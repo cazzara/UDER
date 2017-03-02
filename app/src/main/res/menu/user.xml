@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Shopping Cart action button, leads to Checkout Activity -->
+    <item
+        android:id="@+id/action_checkout"
+        android:icon="@drawable/cart"
+        android:title="Checkout"
+        app:showAsAction="ifRoom"/>
+</menu>

@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Job Map action button, leads to ActiveJob Activity -->
+    <item
+        android:id="@+id/action_jobMap"
+        android:icon="@drawable/map_icon"
+        android:title="Job Map"
+        app:showAsAction="ifRoom"/>
+
+    <!-- Account Management, should always be in the overflow -->
+
+</menu>
