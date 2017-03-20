@@ -1,5 +1,6 @@
 package uder.uder.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.app.FragmentManager;
@@ -71,12 +72,13 @@ public class UserActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
             case R.id.action_checkout:
-                AlertDialog.Builder jobMapAlert = new AlertDialog.Builder(UserActivity.this);
-                jobMapAlert.setMessage("Checkout Button Clicked")
-                        .setNegativeButton("Exit", null)
-                        .create()
-                        .show();
-                return true;
+                Intent checkoutIntent = new Intent(this, CheckoutActivity.class);
+                this.startActivity(checkoutIntent);
+                break;
+            case R.id.action_filters:
+                Intent filterIntent = new Intent(this, FilterActivity.class);
+                this.startActivity(filterIntent);
+                break;
         }
         return true;
 

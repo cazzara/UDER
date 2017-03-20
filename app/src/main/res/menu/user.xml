@@ -7,4 +7,9 @@
         android:icon="@drawable/cart"
         android:title="Checkout"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_filters"
+        android:title="Filters"
+        app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_search_category_default" />
 </menu>

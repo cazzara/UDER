@@ -1,4 +1,4 @@
-package uder.uder;
+package uder.uder.HelperClasses;
 
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.Response;

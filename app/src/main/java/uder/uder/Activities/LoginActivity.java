@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import uder.uder.R;
-import uder.uder.RequestClass;
+import uder.uder.HelperClasses.RequestClass;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -107,7 +107,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         tv_register.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 Intent registerIntent = new Intent(v.getContext(), RegisterActivity.class);
