@@ -12,11 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import uder.uder.Fragments.OrderListFragment;
 import uder.uder.R;
 
 public class GetterActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private CharSequence appBarTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,14 @@ public class GetterActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        appBarTitle = "Welcome Milker";
+        setTitle(appBarTitle);
+    }
+    @Override
+    public void setTitle(CharSequence title) {
+        appBarTitle = title;
+        getSupportActionBar().setTitle(appBarTitle);
+
     }
 
     @Override
@@ -66,7 +76,6 @@ public class GetterActivity extends AppCompatActivity
 
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -78,6 +87,9 @@ public class GetterActivity extends AppCompatActivity
         }
         else if (id == R.id.action_logout){
             // Logout Sequence
+        }
+        else if(id == R.id.action_list_orders){
+            fm.beginTransaction().replace(R.id.content_frame, new OrderListFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

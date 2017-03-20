@@ -39,6 +39,8 @@ public class UserActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        appBarTitle = "Welcome Buyer";
+        setTitle(appBarTitle);
     }
 
     @Override

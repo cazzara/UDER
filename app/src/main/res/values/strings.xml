@@ -9,5 +9,6 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_user">UserActivity</string>
+    <string name="title_activity_active_job">Map</string>
 
 </resources>
