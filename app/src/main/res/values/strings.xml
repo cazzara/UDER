@@ -12,6 +12,7 @@
     <string name="title_activity_active_job">Map</string>
 
     <string-array name="milk_types">
+        <item>"Any </item>
         <item>"Whole Milk"</item>
         <item>"2% Milk"</item>
         <item>"1% Milk"</item>
@@ -21,6 +22,7 @@
     </string-array>
 
     <string-array name="milk_prices">
+        <item>"Any </item>
         <item>"More than $7.00"</item>
         <item>"$7.00 - $5.00"</item>
         <item>"$4.99 - $3.00"</item>
@@ -28,6 +30,7 @@
     </string-array>
 
     <string-array name="milk_flavors">
+        <item>"Any </item>
         <item>"Regular"</item>
         <item>"Chocolate"</item>
         <item>"Strawberry"</item>
@@ -35,6 +38,7 @@
     </string-array>
 
     <string-array name="milk_brands">
+        <item>"Any </item>
         <item>"Silk"</item>
         <item>"Dairy Pure"</item>
         <item>"Borden"</item>

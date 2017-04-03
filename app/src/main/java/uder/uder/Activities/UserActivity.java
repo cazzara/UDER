@@ -12,14 +12,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import uder.uder.HelperClasses.Filter;
+import uder.uder.HelperClasses.ShoppingCart;
 import uder.uder.R;
 
 public class UserActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private CharSequence appBarTitle;
+    private ShoppingCart userShoppingCart = new ShoppingCart();
+    private Filter userFilter = new Filter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -108,7 +116,9 @@ public class UserActivity extends AppCompatActivity
         }
         else if (id == R.id.action_list_items){
             // Start Product List activity
+
             Intent productListIntent = new Intent(this, ProductListActivity.class);
+            productListIntent.putExtra("userShoppingCart", userShoppingCart);
             this.startActivity(productListIntent);
 
 

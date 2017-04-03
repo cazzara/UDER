@@ -41,4 +41,5 @@ public class FilterActivity extends AppCompatActivity {
         milk_brand_spinner.setAdapter(brandSpinnerAdapter);
 
     }
+
 }
