@@ -1,12 +1,14 @@
 package uder.uder.HelperClasses;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Created by cazza223 on 2/23/2017.
  */
 
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
+    // Shopping Cart --> ProductID , Quantity
     private HashMap<String, String> cart;
 
     public ShoppingCart(){
@@ -14,20 +16,25 @@ public class ShoppingCart {
 
     }
 
-    public void addItem(String id, String quantity){
-        cart.put(id, quantity);
-    }
-
-    public void removeItem(String id){
-        if(cart.containsKey(id))
-            cart.remove(id);
+    public void addItem(String ProductID){
+        if(cart.containsKey(ProductID))
+            incrementQuantity(ProductID);
+        else
+            cart.put(ProductID, "1");
 
     }
 
-    public void incrementQuantity(String id){
-        if(cart.containsKey(id)){
-            int quantity = Integer.parseInt(cart.get(id));
-        }
+    public void removeItem(String ProductID){
+        if(cart.containsKey(ProductID))
+            cart.remove(ProductID);
+
+    }
+
+    public void incrementQuantity(String ProductID){
+        int quantity = Integer.parseInt(cart.get(ProductID));
+        quantity++;
+        cart.put(ProductID, ""+quantity);
+
     }
 
 

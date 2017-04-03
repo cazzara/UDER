@@ -53,6 +53,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="uder.uder.Activities.GetterActivity" />
         </activity>
+        <activity android:name=".Activities.OrderHistoryActivity" />
+        <activity android:name=".Activities.OrderStatusActivity" />
+        <activity android:name=".Activities.AccountSettingsActivity" />
+        <activity android:name=".Activities.ProductListActivity"></activity>
     </application>
 
 </manifest>

@@ -11,4 +11,34 @@
     <string name="title_activity_user">UserActivity</string>
     <string name="title_activity_active_job">Map</string>
 
+    <string-array name="milk_types">
+        <item>"Whole Milk"</item>
+        <item>"2% Milk"</item>
+        <item>"1% Milk"</item>
+        <item>"Soy Milk"</item>
+        <item>"Almond Milk"</item>
+        <item>"Skim Milk"</item>
+    </string-array>
+
+    <string-array name="milk_prices">
+        <item>"More than $7.00"</item>
+        <item>"$7.00 - $5.00"</item>
+        <item>"$4.99 - $3.00"</item>
+        <item>"Less than $3.00"</item>
+    </string-array>
+
+    <string-array name="milk_flavors">
+        <item>"Regular"</item>
+        <item>"Chocolate"</item>
+        <item>"Strawberry"</item>
+        <item>"Vanilla"</item>
+    </string-array>
+
+    <string-array name="milk_brands">
+        <item>"Silk"</item>
+        <item>"Dairy Pure"</item>
+        <item>"Borden"</item>
+        <item>"Dairyland"</item>
+    </string-array>
+
 </resources>

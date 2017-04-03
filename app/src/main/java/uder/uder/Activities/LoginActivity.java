@@ -18,8 +18,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import uder.uder.R;
 import uder.uder.HelperClasses.RequestClass;
@@ -54,19 +52,22 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         b_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 final String username = et_username.getText().toString();
                 final String password = et_password.getText().toString();
 
-                Response.Listener<String> listener = new Response.Listener<String>(){
+                Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>(){
+
 
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(JSONObject response) {
                         try{
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success = jsonObject.getBoolean("success");
-                            String user_type = jsonObject.getString("user_type");
+
+                            boolean success = response.getBoolean("success");
+                            String user_type = response.getString("user_type");
+
                             if(success){
                                 if(user_type.equals("reg_user")) {
                                     Intent intent = new Intent(LoginActivity.this, UserActivity.class);
@@ -91,10 +92,17 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 };
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("username", username);
-                params.put("password", password);
-                RequestClass POSTLogin = new RequestClass("URLHERE", params, listener, new Response.ErrorListener() {
+
+                JSONObject params = new JSONObject();
+
+                try {
+                    params.put("username", username);
+                    params.put("password", password);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(params.toString());
+                RequestClass POSTLogin = new RequestClass("http://34.208.156.179:4567", params, listener, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         System.err.println(error);

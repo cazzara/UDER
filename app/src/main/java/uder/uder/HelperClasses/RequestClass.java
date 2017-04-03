@@ -1,25 +1,23 @@
 package uder.uder.HelperClasses;
 
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+
 import com.android.volley.Response;
 
-import java.util.HashMap;
-import java.util.Map;
+
+import org.json.JSONObject;
 
 /**
  * Created by cazza223 on 2/9/2017.
  */
 
-public class RequestClass extends StringRequest {
-    private Map<String, String> params;
+public class RequestClass extends JsonObjectRequest {
 
-    public RequestClass(String URL, Map<String, String> post_data, Response.Listener<String> listener, Response.ErrorListener error){
-        super(Method.POST, URL, listener, error);
-        params = new HashMap<>();
-        params = post_data;
+
+    public RequestClass(String URL, JSONObject post_data, Response.Listener<JSONObject> listener, Response.ErrorListener error){
+        super(URL, post_data, listener, error);
+
 
     }
-
-    public Map<String, String> getParams() { return params; }
 
 }

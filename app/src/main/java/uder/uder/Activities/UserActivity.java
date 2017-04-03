@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,10 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import uder.uder.Fragments.ItemListFragment;
-import uder.uder.Fragments.OrderStatusFragment;
-import uder.uder.Fragments.OrderHistoryFragment;
 import uder.uder.R;
 
 public class UserActivity extends AppCompatActivity
@@ -31,7 +25,7 @@ public class UserActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        // https://developer.android.com/training/implementing-navigation/nav-drawer.html
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -52,8 +46,10 @@ public class UserActivity extends AppCompatActivity
     }
 
     @Override
+    // Close Navigation Drawer if it's open before exiting the activity
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -92,24 +88,29 @@ public class UserActivity extends AppCompatActivity
         FragmentManager fm = getFragmentManager();
 
         if (id == R.id.order_history) {
-           //show order history fragment
-            setTitle("Order History");
-            fm.beginTransaction().replace(R.id.content_frame, new OrderHistoryFragment()).commit();
+           //Start order history activity
+            Intent orderHistoryIntent = new Intent(this, OrderHistoryActivity.class);
+            this.startActivity(orderHistoryIntent);
+
         } else if (id == R.id.order_status) {
-            //show order status fragment
-            setTitle("Order Status");
-            fm.beginTransaction().replace(R.id.content_frame, new OrderStatusFragment()).commit();
+            //Start order status activity
+            Intent orderStatusIntent = new Intent(this, OrderStatusActivity.class);
+            this.startActivity(orderStatusIntent);
+
         }
         else if (id == R.id.action_acct_mgmt){
-            // Account management Fragment
+            // Start Account management activity
+            Intent acctMgmtIntent = new Intent(this, AccountSettingsActivity.class);
+            this.startActivity(acctMgmtIntent);
         }
         else if (id == R.id.action_logout){
             // Logout Sequence
         }
         else if (id == R.id.action_list_items){
-            // List Items Fragment
-            setTitle("Select Products");
-            fm.beginTransaction().replace(R.id.content_frame, new ItemListFragment()).commit();
+            // Start Product List activity
+            Intent productListIntent = new Intent(this, ProductListActivity.class);
+            this.startActivity(productListIntent);
+
 
         }
 
