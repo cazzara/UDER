@@ -20,13 +20,23 @@ import uder.uder.R;
 public class UserActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private CharSequence appBarTitle;
-    private ShoppingCart userShoppingCart = new ShoppingCart();
-    private Filter userFilter = new Filter();
+    private ShoppingCart userShoppingCart;
+    private Filter userFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        System.out.println("User Activity created");
 
+        userFilter = (Filter)getIntent().getSerializableExtra("userFilter");
+        userShoppingCart = (ShoppingCart)getIntent().getSerializableExtra("userShoppingCart");
+
+        if(userFilter == null)
+            userFilter = new Filter();
+        if(userShoppingCart == null)
+            userShoppingCart = new ShoppingCart();
+
+        System.out.println("Filter Object: "+userFilter +" Cart Object: "+ userShoppingCart);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
@@ -77,10 +87,13 @@ public class UserActivity extends AppCompatActivity
         switch(item.getItemId()){
             case R.id.action_checkout:
                 Intent checkoutIntent = new Intent(this, CheckoutActivity.class);
+                checkoutIntent.putExtra("userShoppingCart", userShoppingCart);
+                checkoutIntent.putExtra("userFilter", userFilter);
                 this.startActivity(checkoutIntent);
                 break;
             case R.id.action_filters:
                 Intent filterIntent = new Intent(this, FilterActivity.class);
+                filterIntent.putExtra("userFilter", userFilter);
                 this.startActivity(filterIntent);
                 break;
         }
@@ -88,12 +101,18 @@ public class UserActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("User Activity Resumed");
+        System.out.println("Filter Object: "+userFilter +" Cart Object: "+ userShoppingCart);
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fm = getFragmentManager();
 
         if (id == R.id.order_history) {
            //Start order history activity
@@ -113,12 +132,14 @@ public class UserActivity extends AppCompatActivity
         }
         else if (id == R.id.action_logout){
             // Logout Sequence
+
         }
         else if (id == R.id.action_list_items){
             // Start Product List activity
 
             Intent productListIntent = new Intent(this, ProductListActivity.class);
             productListIntent.putExtra("userShoppingCart", userShoppingCart);
+            productListIntent.putExtra("userFilter", userFilter);
             this.startActivity(productListIntent);
 
 

@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                RequestClass POSTRegister = new RequestClass("http://34.208.156.179:4567", params, listener, new Response.ErrorListener() {
+                RequestClass POSTRegister = new RequestClass("http://34.208.156.179:4567/api/register", params, listener, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         System.err.println(error);

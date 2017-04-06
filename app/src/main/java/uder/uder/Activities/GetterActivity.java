@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import uder.uder.Fragments.OrderListFragment;
 import uder.uder.R;
 
 public class GetterActivity extends AppCompatActivity
@@ -89,7 +88,7 @@ public class GetterActivity extends AppCompatActivity
             // Logout Sequence
         }
         else if(id == R.id.action_list_orders){
-            fm.beginTransaction().replace(R.id.content_frame, new OrderListFragment()).commit();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

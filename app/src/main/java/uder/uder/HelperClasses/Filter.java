@@ -25,10 +25,10 @@ public class Filter implements Serializable{
 
 
     public Filter(){
-        milk_brand = "";
-        milk_flavor = "";
-        milk_price_range = "";
-        milk_type = "";
+        milk_brand = "Any";
+        milk_flavor = "Any";
+        milk_price_range = "Any";
+        milk_type = "Any";
     }
 
     public String getMilk_type() {
@@ -75,5 +75,10 @@ public class Filter implements Serializable{
             e.printStackTrace();
         }
         return filterJSON;
+    }
+
+    @Override
+    public String toString() {
+        return getMilk_type() + " " + getMilk_price_range() + " " + getMilk_brand() + " " + getMilk_flavor();
     }
 }

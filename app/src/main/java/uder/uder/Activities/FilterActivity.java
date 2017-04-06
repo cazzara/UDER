@@ -1,17 +1,23 @@
 package uder.uder.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
+import uder.uder.HelperClasses.Filter;
 import uder.uder.R;
 
 /**
  * Created by cazza223 on 3/20/2017.
  */
 
+
 public class FilterActivity extends AppCompatActivity {
+    private Filter userFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +26,14 @@ public class FilterActivity extends AppCompatActivity {
 
         // https://developer.android.com/guide/topics/ui/controls/spinner.html
 
-        Spinner milk_type_spinner = (Spinner)findViewById(R.id.sp_typeList);
-        Spinner milk_price_spinner = (Spinner)findViewById(R.id.sp_priceRange);
-        Spinner milk_flavor_spinner = (Spinner)findViewById(R.id.sp_flavor);
-        Spinner milk_brand_spinner = (Spinner)findViewById(R.id.sp_brand);
+        final Spinner milk_type_spinner = (Spinner)findViewById(R.id.sp_typeList);
+        final Spinner milk_price_spinner = (Spinner)findViewById(R.id.sp_priceRange);
+        final Spinner milk_flavor_spinner = (Spinner)findViewById(R.id.sp_flavor);
+        final Spinner milk_brand_spinner = (Spinner)findViewById(R.id.sp_brand);
+        final Button b_cancel = (Button)findViewById(R.id.b_cancel);
+        final Button b_apply = (Button)findViewById(R.id.b_apply);
+
+        userFilter = (Filter) getIntent().getSerializableExtra("userFilter");
 
         ArrayAdapter<CharSequence> typeSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.milk_types, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> priceSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.milk_prices, android.R.layout.simple_spinner_item);
@@ -39,6 +49,36 @@ public class FilterActivity extends AppCompatActivity {
         milk_price_spinner.setAdapter(priceSpinnerAdapter);
         milk_flavor_spinner.setAdapter(flavorSpinnerAdapter);
         milk_brand_spinner.setAdapter(brandSpinnerAdapter);
+
+        b_apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = milk_type_spinner.getSelectedItem().toString();
+                String priceRange = milk_price_spinner.getSelectedItem().toString();
+                String flavor = milk_flavor_spinner.getSelectedItem().toString();
+                String brand = milk_brand_spinner.getSelectedItem().toString();
+
+                userFilter.setMilk_brand(brand);
+                userFilter.setMilk_flavor(flavor);
+                userFilter.setMilk_price_range(priceRange);
+                userFilter.setMilk_type(type);
+
+                Intent returnIntent = new Intent(v.getContext(), UserActivity.class);
+                returnIntent.putExtra("userFilter", userFilter);
+
+                v.getContext().startActivity(returnIntent);
+            }
+        });
+
+        b_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent returnIntent = new Intent(v.getContext(), UserActivity.class);
+                returnIntent.putExtra("userFilter", userFilter);
+
+                v.getContext().startActivity(returnIntent);
+            }
+        });
 
     }
 

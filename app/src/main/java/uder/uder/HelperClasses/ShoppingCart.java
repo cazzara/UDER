@@ -16,6 +16,15 @@ public class ShoppingCart implements Serializable {
 
     }
 
+    @Override
+    public String toString() {
+        String cartContents = "";
+        for(String product : cart.keySet()){
+           cartContents += product + " : " + cart.get(product);
+        }
+        return cartContents;
+    }
+
     public void addItem(String ProductID){
         if(cart.containsKey(ProductID))
             incrementQuantity(ProductID);
