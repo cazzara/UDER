@@ -11,6 +11,7 @@
     <string name="title_activity_user">UserActivity</string>
     <string name="title_activity_active_job">Map</string>
     <string name="orderHistoryTextView">Below are your orders:</string>
+    <string name="product_select_message">Select a Product Below to Add to Shopping Cart</string>
 
     <string-array name="milk_types">
         <item>"Any </item>

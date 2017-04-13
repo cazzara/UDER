@@ -47,6 +47,13 @@ public class Filter implements Serializable{
         this.milk_price_range = milk_price_range;
     }
 
+    public void clearFilter(){
+        this.setMilk_price_range("Any");
+        this.setMilk_type("Any");
+        this.setMilk_flavor("Any");
+        this.setMilk_brand("Any");
+    }
+
     public String getMilk_flavor() {
         return milk_flavor;
     }
@@ -79,6 +86,9 @@ public class Filter implements Serializable{
 
     @Override
     public String toString() {
-        return getMilk_type() + " " + getMilk_price_range() + " " + getMilk_brand() + " " + getMilk_flavor();
+        return "Type: " + getMilk_type() + "\n" +
+                "Price: "+ getMilk_price_range() + "\n" +
+                "Brand: "+ getMilk_brand() + "\n" +
+                "Flavor: " + getMilk_flavor();
     }
 }

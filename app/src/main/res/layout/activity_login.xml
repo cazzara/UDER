@@ -60,7 +60,6 @@
         android:text="Welcome to UDER, please enter your username and password below to get started!"
         android:textStyle="normal|bold"
         android:textAlignment="center"
-        android:background="@color/common_action_bar_splitter"
         android:layout_alignParentEnd="true"
         android:padding="13dp" />
 

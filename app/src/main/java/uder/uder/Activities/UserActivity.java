@@ -3,7 +3,6 @@ package uder.uder.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,34 +11,56 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-import uder.uder.HelperClasses.Filter;
-import uder.uder.HelperClasses.ShoppingCart;
+import uder.uder.HelperClasses.User;
 import uder.uder.R;
 
 public class UserActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     private CharSequence appBarTitle;
-    private ShoppingCart userShoppingCart;
-    private Filter userFilter;
+
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user);
 
         System.out.println("User Activity created");
 
-        userFilter = (Filter)getIntent().getSerializableExtra("userFilter");
-        userShoppingCart = (ShoppingCart)getIntent().getSerializableExtra("userShoppingCart");
+        currentUser = (User)getIntent().getSerializableExtra("user");
 
-        if(userFilter == null)
-            userFilter = new Filter();
-        if(userShoppingCart == null)
-            userShoppingCart = new ShoppingCart();
+        System.out.println("Filter Object: "+currentUser.getMyFilter() +" Cart Object: "+ currentUser.getMyCart());
 
-        System.out.println("Filter Object: "+userFilter +" Cart Object: "+ userShoppingCart);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        final TextView cartContents = (TextView)findViewById(R.id.tv_cartContents);
+        final TextView filterContents = (TextView)findViewById(R.id.tv_filterContents);
+
+        Button clearCart = (Button)findViewById(R.id.b_clearCart);
+        Button clearFilter = (Button)findViewById(R.id.b_clearFilter);
+
+        clearCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentUser.getMyCart().clearCart();
+                displayCartContents(cartContents, currentUser);
+            }
+        });
+
+        clearFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentUser.getMyFilter().clearFilter();
+                displayFilterContents(filterContents, currentUser);
+            }
+        });
+
+        displayCartContents(cartContents,  currentUser);
+        displayFilterContents(filterContents, currentUser);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -52,8 +73,19 @@ public class UserActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        appBarTitle = "Welcome Buyer";
+        appBarTitle = "Welcome " + currentUser.getFirstName();
         setTitle(appBarTitle);
+    }
+
+    public void displayCartContents(TextView cartContents, User user) {
+        if(user.getMyCart().isEmpty())
+            cartContents.setText("Shopping Cart is Empty");
+        else
+            cartContents.setText(user.getMyCart().toString());
+    }
+
+    public void displayFilterContents(TextView filterContents, User user){
+        filterContents.setText(user.getMyFilter().toString());
     }
 
     @Override
@@ -87,13 +119,12 @@ public class UserActivity extends AppCompatActivity
         switch(item.getItemId()){
             case R.id.action_checkout:
                 Intent checkoutIntent = new Intent(this, CheckoutActivity.class);
-                checkoutIntent.putExtra("userShoppingCart", userShoppingCart);
-                checkoutIntent.putExtra("userFilter", userFilter);
+                checkoutIntent.putExtra("user", currentUser);
                 this.startActivity(checkoutIntent);
                 break;
             case R.id.action_filters:
                 Intent filterIntent = new Intent(this, FilterActivity.class);
-                filterIntent.putExtra("userFilter", userFilter);
+                filterIntent.putExtra("user", currentUser);
                 this.startActivity(filterIntent);
                 break;
         }
@@ -105,7 +136,10 @@ public class UserActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         System.out.println("User Activity Resumed");
-        System.out.println("Filter Object: "+userFilter +" Cart Object: "+ userShoppingCart);
+
+        currentUser = (User)getIntent().getSerializableExtra("user");
+
+        System.out.println("Filter Object: "+currentUser.getMyFilter() +" Cart Object: "+ currentUser.getMyCart());
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -138,8 +172,7 @@ public class UserActivity extends AppCompatActivity
             // Start Product List activity
 
             Intent productListIntent = new Intent(this, ProductListActivity.class);
-            productListIntent.putExtra("userShoppingCart", userShoppingCart);
-            productListIntent.putExtra("userFilter", userFilter);
+            productListIntent.putExtra("user", currentUser);
             this.startActivity(productListIntent);
 
 

@@ -1,5 +1,6 @@
 package uder.uder.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         final Button b_signup = (Button) findViewById(R.id.b_signup);
 
         b_signup.setOnClickListener(new View.OnClickListener() {
+            final JSONObject serverResponse = new JSONObject();
 
             @Override
             public void onClick(View v) {
@@ -56,15 +58,13 @@ public class RegisterActivity extends AppCompatActivity {
                 // condition ? value_if_true : value_if_false
                 final String user_type = rb_user.isSelected() ? rb_user.getText().toString() : rb_getter.getText().toString();
 
+
                 Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>(){
 
                     @Override
                     public void onResponse(JSONObject response) {
                         try{
-                            boolean success = response.getBoolean("success");
-                            if(success){
-
-                            }
+                            serverResponse.put("success", response);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                RequestClass POSTRegister = new RequestClass("http://34.208.156.179:4567/api/register", params, listener, new Response.ErrorListener() {
+                RequestClass POSTRegister = new RequestClass("http://34.208.156.179:4567/api/v1/register", params, listener, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         System.err.println(error);
@@ -92,9 +92,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                 RequestQueue queue =  Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(POSTRegister);
+
+                // TODO do something with server response
+                // serverResponse.get()
             }
 
         });
+
+
 
     }
 }

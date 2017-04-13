@@ -7,8 +7,38 @@
     android:layout_height="fill_parent"
     tools:context="uder.uder.Activities.ProductListActivity">
 
+    <TextView
+        android:id="@+id/productSelectMessage"
+        android:gravity="center"
+        android:text="@string/product_select_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textStyle="normal|bold" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lv_productList" />
+        android:id="@+id/lv_productList"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp" />
+
+    <Button
+        android:text="Checkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="45dp"
+        android:id="@+id/b_checkout" />
+
+    <Button
+        android:text="Go Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/b_checkout"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="45dp"
+        android:id="@+id/b_goBack" />
+
 </RelativeLayout>

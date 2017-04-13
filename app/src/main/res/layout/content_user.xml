@@ -13,13 +13,63 @@
     tools:context="uder.uder.Activities.UserActivity"
     tools:showIn="@layout/app_bar_user"
     android:background="?android:attr/textColorLink">
+    <TextView
+        android:text="Your Shopping Cart:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_cartMessage"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textStyle="normal|bold"
+        android:textSize="20dp" />
 
-    <FrameLayout
-        android:id="@+id/content_frame"
+    <TextView
+        android:text="Active Filters:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_filterMessage"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/tv_cartContents"
+        android:textSize="20dp" />
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:id="@+id/tv_filterContents"
+        android:layout_below="@+id/tv_filterMessage"
+        android:textSize="18dp" />
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/tv_cartContents"
+        android:layout_below="@+id/tv_cartMessage"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/tv_filterContents"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="31dp">
-    </FrameLayout>
+        android:layout_marginTop="111dp">
+
+        <Button
+            android:text="Clear Cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/b_clearCart"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="Reset Filters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/b_clearFilter"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 </RelativeLayout>

@@ -8,42 +8,48 @@ import java.util.HashMap;
  */
 
 public class ShoppingCart implements Serializable {
-    // Shopping Cart --> ProductID , Quantity
-    private HashMap<String, String> cart;
+    // Shopping Cart --> Product , Quantity
+    private HashMap<Product, String> cart;
 
-    public ShoppingCart(){
-        cart = new HashMap<>();
-
-    }
+    public ShoppingCart(){ cart = new HashMap<>(); }
 
     @Override
     public String toString() {
         String cartContents = "";
-        for(String product : cart.keySet()){
-           cartContents += product + " : " + cart.get(product);
-        }
+        for(Product product : cart.keySet())
+           cartContents += product + " Quantity: " + cart.get(product) + "\n";
         return cartContents;
     }
 
-    public void addItem(String ProductID){
-        if(cart.containsKey(ProductID))
-            incrementQuantity(ProductID);
+    public void clearCart() { cart.clear(); }
+
+    public boolean isEmpty(){
+        if(cart.size() == 0)
+            return true;
         else
-            cart.put(ProductID, "1");
+            return false;
+    }
+
+    public void addItem(Product product){
+        if(cart.containsKey(product))
+            incrementQuantity(product);
+        else
+            cart.put(product, "1");
 
     }
 
-    public void removeItem(String ProductID){
-        if(cart.containsKey(ProductID))
-            cart.remove(ProductID);
+    public int numberOfItems(){ return cart.size(); }
+
+    public void removeItem(Product product){
+        if(cart.containsKey(product))
+            cart.remove(product);
 
     }
 
-    public void incrementQuantity(String ProductID){
-        int quantity = Integer.parseInt(cart.get(ProductID));
+    public void incrementQuantity(Product product){
+        int quantity = Integer.parseInt(cart.get(product));
         quantity++;
-        cart.put(ProductID, ""+quantity);
-
+        cart.put(product, "" + quantity);
     }
 
 

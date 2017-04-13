@@ -1,10 +1,12 @@
 package uder.uder.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,46 +20,75 @@ import java.util.ArrayList;
 import uder.uder.HelperClasses.Filter;
 import uder.uder.HelperClasses.Product;
 import uder.uder.HelperClasses.ShoppingCart;
+import uder.uder.HelperClasses.User;
+import uder.uder.ProductAdapter;
 import uder.uder.R;
 
 public class ProductListActivity extends AppCompatActivity {
 
-    private String[] products = {"Product 1", "Product 2", "Product 3", "Product 4", "Product 5"};
-    private ShoppingCart userShoppingCart;
-    private Filter userFilter;
+    private ArrayList<Product> products = new ArrayList<>();
+    private User currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_product_list);
+        ArrayList<Product> serverProducts = getProducts(currentUser.getMyFilter());
 
+        final Button checkout = (Button) findViewById(R.id.b_checkout);
+        final Button goBack = (Button) findViewById(R.id.b_goBack);
 
-        userShoppingCart = (ShoppingCart) getIntent().getSerializableExtra("userShoppingCart");
-        userFilter = (Filter) getIntent().getSerializableExtra("userFilter");
+        currentUser = (User)getIntent().getSerializableExtra("user");
+
+        products.add(new Product("1", "Horizon Whole Milk", "5.99"));
+        products.add(new Product("2", "Dairy Pure Soy Milk", "1.99"));
+        products.add(new Product("3", "Amish Farms 1% Milk", "3.99"));
+        products.add(new Product("4", "Horizon 2% Milk", "4.99"));
+        products.add(new Product("5", "Tuscan Whole Milk", "6.99"));
+        products.add(new Product("6", "Wellsley Farms 2% Milk", "2.50"));
+        products.add(new Product("7", "Tuscan Half and Half", "2.19"));
+        products.add(new Product("8", "Dairy Pure 1% Milk", "1.99"));
 
         ListView productList = (ListView) findViewById(R.id.lv_productList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, products);
-
+        ProductAdapter adapter = new ProductAdapter(getApplicationContext(),products);
         productList.setAdapter(adapter);
 
         productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                userShoppingCart.addItem(products[position]);
+                currentUser.getMyCart().addItem(products.get(position));
                 Toast.makeText(getApplicationContext(),
-                        "Added  " + products[position] + " to shopping cart", Toast.LENGTH_LONG)
+                        "Added  " + products.get(position).getProductName() + " to shopping cart", Toast.LENGTH_SHORT)
                         .show();
+            }
+        });
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent checkoutIntent = new Intent(v.getContext(), CheckoutActivity.class);
+                checkoutIntent.putExtra("user", currentUser);
+                v.getContext().startActivity(checkoutIntent);
+            }
+        });
+
+
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent userIntent = new Intent(v.getContext(), UserActivity.class);
+                userIntent.putExtra("user", currentUser);
+                v.getContext().startActivity(userIntent);
             }
         });
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//
-//
-//    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+
+    }
 
     public ArrayList<Product> getProducts(Filter f){
 

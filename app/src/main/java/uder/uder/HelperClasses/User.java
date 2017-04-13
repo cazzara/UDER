@@ -6,34 +6,38 @@ import java.io.Serializable;
  * Created by cazza223 on 4/3/2017.
  */
 
-public class User implements Serializable {
-    private String username;
-    private String password;
+public class User {
 
-    public User(String uname, String pword){
-        username = uname;
-        password = pword;
+    protected String firstName;
+    protected String lastName;
+    protected String username;
+    protected String password;
+
+    public User(String fName, String lName, String uName, String pass){
+        firstName = fName;
+        lastName = lName;
+        username = uName;
+        password = pass;
     }
 
-    public String getUsername() {
+    public String getfName(){
+        return firstName;
+    }
+
+    public String getlName(){
+        return lastName;
+    }
+
+    public String getUsername(){
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
+    public String getPassword(){
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String toString(){
+        return "Name: " + firstName + " " + lastName + "\n" + " Username: " + username + "\n" + "Password: " + password;
     }
-
-    public void logout(){
-        // TODO implement logout function
-    }
-
 
 }

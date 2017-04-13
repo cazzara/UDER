@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import uder.uder.HelperClasses.Filter;
+import uder.uder.HelperClasses.ShoppingCart;
+import uder.uder.HelperClasses.User;
 import uder.uder.R;
 
 /**
@@ -17,7 +19,7 @@ import uder.uder.R;
 
 
 public class FilterActivity extends AppCompatActivity {
-    private Filter userFilter;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class FilterActivity extends AppCompatActivity {
         final Button b_cancel = (Button)findViewById(R.id.b_cancel);
         final Button b_apply = (Button)findViewById(R.id.b_apply);
 
-        userFilter = (Filter) getIntent().getSerializableExtra("userFilter");
+        currentUser = (User)getIntent().getSerializableExtra("user");
 
         ArrayAdapter<CharSequence> typeSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.milk_types, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> priceSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.milk_prices, android.R.layout.simple_spinner_item);
@@ -58,13 +60,14 @@ public class FilterActivity extends AppCompatActivity {
                 String flavor = milk_flavor_spinner.getSelectedItem().toString();
                 String brand = milk_brand_spinner.getSelectedItem().toString();
 
-                userFilter.setMilk_brand(brand);
-                userFilter.setMilk_flavor(flavor);
-                userFilter.setMilk_price_range(priceRange);
-                userFilter.setMilk_type(type);
+                currentUser.getMyFilter().setMilk_brand(brand);
+                currentUser.getMyFilter().setMilk_flavor(flavor);
+                currentUser.getMyFilter().setMilk_price_range(priceRange);
+                currentUser.getMyFilter().setMilk_type(type);
 
                 Intent returnIntent = new Intent(v.getContext(), UserActivity.class);
-                returnIntent.putExtra("userFilter", userFilter);
+
+                returnIntent.putExtra("user", currentUser);
 
                 v.getContext().startActivity(returnIntent);
             }
@@ -74,8 +77,7 @@ public class FilterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent returnIntent = new Intent(v.getContext(), UserActivity.class);
-                returnIntent.putExtra("userFilter", userFilter);
-
+                returnIntent.putExtra("user", currentUser);
                 v.getContext().startActivity(returnIntent);
             }
         });

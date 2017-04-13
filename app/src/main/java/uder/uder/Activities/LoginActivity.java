@@ -19,6 +19,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import uder.uder.HelperClasses.Filter;
+import uder.uder.HelperClasses.ShoppingCart;
+import uder.uder.HelperClasses.User;
 import uder.uder.R;
 import uder.uder.HelperClasses.RequestClass;
 
@@ -40,7 +43,11 @@ public class LoginActivity extends AppCompatActivity {
 
         user_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                User me = new User("cazzara", "password", new Filter(), new ShoppingCart(), "Chris", "Azzara");
+
                 Intent user_areaIntent = new Intent(v.getContext(), UserActivity.class);
+                user_areaIntent.putExtra("user", me);
+
                 LoginActivity.this.startActivity(user_areaIntent);
             }
         });
@@ -70,8 +77,14 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(success){
                                 if(user_type.equals("reg_user")) {
+                                    ShoppingCart userShoppingCart = new ShoppingCart();
+                                    Filter userFilter = new Filter();
+
                                     Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+                                    // TODO Create user object
                                     intent.putExtra("username", username);
+                                    intent.putExtra("userFilter", userFilter);
+                                    intent.putExtra("userShoppingCart", userShoppingCart);
                                     LoginActivity.this.startActivity(intent);
                                 }
                                 else{
