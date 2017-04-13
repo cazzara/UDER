@@ -11,7 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import uder.uder.R;
 
-public class ActiveJob extends FragmentActivity implements OnMapReadyCallback {
+public class ActiveJobActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 

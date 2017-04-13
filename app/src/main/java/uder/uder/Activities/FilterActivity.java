@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import uder.uder.HelperClasses.Filter;
+import uder.uder.HelperClasses.Regular_User;
 import uder.uder.HelperClasses.ShoppingCart;
 import uder.uder.HelperClasses.User;
 import uder.uder.R;
@@ -19,7 +20,7 @@ import uder.uder.R;
 
 
 public class FilterActivity extends AppCompatActivity {
-    private User currentUser;
+    private Regular_User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class FilterActivity extends AppCompatActivity {
         final Button b_cancel = (Button)findViewById(R.id.b_cancel);
         final Button b_apply = (Button)findViewById(R.id.b_apply);
 
-        currentUser = (User)getIntent().getSerializableExtra("user");
+        currentUser = (Regular_User)getIntent().getSerializableExtra("user");
 
         ArrayAdapter<CharSequence> typeSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.milk_types, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> priceSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.milk_prices, android.R.layout.simple_spinner_item);
@@ -60,10 +61,10 @@ public class FilterActivity extends AppCompatActivity {
                 String flavor = milk_flavor_spinner.getSelectedItem().toString();
                 String brand = milk_brand_spinner.getSelectedItem().toString();
 
-                currentUser.getMyFilter().setMilk_brand(brand);
-                currentUser.getMyFilter().setMilk_flavor(flavor);
-                currentUser.getMyFilter().setMilk_price_range(priceRange);
-                currentUser.getMyFilter().setMilk_type(type);
+                currentUser.getFilter().setMilk_brand(brand);
+                currentUser.getFilter().setMilk_flavor(flavor);
+                currentUser.getFilter().setMilk_price_range(priceRange);
+                currentUser.getFilter().setMilk_type(type);
 
                 Intent returnIntent = new Intent(v.getContext(), UserActivity.class);
 

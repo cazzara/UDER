@@ -1,16 +1,18 @@
 package uder.uder.HelperClasses;
 
+import java.io.Serializable;
+
 /**
  * Created by cazza223 on 4/13/2017.
  */
 
-public class Regular_User extends User{
+public class Regular_User extends User implements Serializable{
 
     protected ShoppingCart shoppingCart;
     protected Filter filter;
 
-    public Regular_User(String fName, String lName, String uName, String pass, ShoppingCart sCart, Filter Filter) {
-        super(fName, lName, uName, pass);
+    public Regular_User(String id, String fName, String lName, String uName, String pass, ShoppingCart sCart, Filter Filter) {
+        super(id, fName, lName, uName, pass);
         shoppingCart = sCart;
         filter = Filter;
     }

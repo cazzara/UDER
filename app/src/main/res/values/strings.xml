@@ -12,6 +12,7 @@
     <string name="title_activity_active_job">Map</string>
     <string name="orderHistoryTextView">Below are your orders:</string>
     <string name="product_select_message">Select a Product Below to Add to Shopping Cart</string>
+    <string name="checkout_message">Select an Item Below to Modify \nShopping Cart Contents: </string>
 
     <string-array name="milk_types">
         <item>"Any </item>
@@ -45,6 +46,12 @@
         <item>"Dairy Pure"</item>
         <item>"Borden"</item>
         <item>"Dairyland"</item>
+    </string-array>
+
+    <string-array name="product_choices">
+        <item>Add 1</item>
+        <item>Remove 1</item>
+        <item>Remove From Cart</item>
     </string-array>
 
 </resources>

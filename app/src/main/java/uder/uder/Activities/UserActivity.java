@@ -1,12 +1,16 @@
 package uder.uder.Activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import uder.uder.HelperClasses.Regular_User;
 import uder.uder.HelperClasses.User;
 import uder.uder.R;
 
@@ -23,7 +28,7 @@ public class UserActivity extends AppCompatActivity
 
     private CharSequence appBarTitle;
 
-    private User currentUser;
+    private Regular_User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +37,9 @@ public class UserActivity extends AppCompatActivity
 
         System.out.println("User Activity created");
 
-        currentUser = (User)getIntent().getSerializableExtra("user");
+        currentUser = (Regular_User) getIntent().getSerializableExtra("user");
 
-        System.out.println("Filter Object: "+currentUser.getMyFilter() +" Cart Object: "+ currentUser.getMyCart());
+        System.out.println("Filter Object: "+currentUser.getFilter() +" Cart Object: "+ currentUser.getShoppingCart());
 
 
         final TextView cartContents = (TextView)findViewById(R.id.tv_cartContents);
@@ -46,7 +51,7 @@ public class UserActivity extends AppCompatActivity
         clearCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentUser.getMyCart().clearCart();
+                currentUser.getShoppingCart().clearCart();
                 displayCartContents(cartContents, currentUser);
             }
         });
@@ -54,7 +59,7 @@ public class UserActivity extends AppCompatActivity
         clearFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentUser.getMyFilter().clearFilter();
+                currentUser.getFilter().clearFilter();
                 displayFilterContents(filterContents, currentUser);
             }
         });
@@ -64,6 +69,7 @@ public class UserActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         // https://developer.android.com/training/implementing-navigation/nav-drawer.html
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -71,21 +77,22 @@ public class UserActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        appBarTitle = "Welcome " + currentUser.getFirstName();
+        appBarTitle = "Welcome " + currentUser.getfName();
         setTitle(appBarTitle);
     }
 
-    public void displayCartContents(TextView cartContents, User user) {
-        if(user.getMyCart().isEmpty())
+    public void displayCartContents(TextView cartContents, Regular_User user) {
+        if(user.getShoppingCart().isEmpty())
             cartContents.setText("Shopping Cart is Empty");
         else
-            cartContents.setText(user.getMyCart().toString());
+            cartContents.setText(user.getShoppingCart().toString());
     }
 
-    public void displayFilterContents(TextView filterContents, User user){
-        filterContents.setText(user.getMyFilter().toString());
+    public void displayFilterContents(TextView filterContents, Regular_User user){
+        filterContents.setText(user.getFilter().toString());
     }
 
     @Override
@@ -118,9 +125,18 @@ public class UserActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
             case R.id.action_checkout:
-                Intent checkoutIntent = new Intent(this, CheckoutActivity.class);
-                checkoutIntent.putExtra("user", currentUser);
-                this.startActivity(checkoutIntent);
+                if(currentUser.getShoppingCart().isEmpty()){
+                    AlertDialog.Builder emptyCartAlert = new AlertDialog.Builder(UserActivity.this);
+                    emptyCartAlert.setMessage("No Items in Cart!")
+                            .setNegativeButton("Exit", null)
+                            .create()
+                            .show();
+                }
+                else {
+                    Intent checkoutIntent = new Intent(this, CheckoutActivity.class);
+                    checkoutIntent.putExtra("user", currentUser);
+                    this.startActivity(checkoutIntent);
+                }
                 break;
             case R.id.action_filters:
                 Intent filterIntent = new Intent(this, FilterActivity.class);
@@ -132,15 +148,6 @@ public class UserActivity extends AppCompatActivity
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        System.out.println("User Activity Resumed");
-
-        currentUser = (User)getIntent().getSerializableExtra("user");
-
-        System.out.println("Filter Object: "+currentUser.getMyFilter() +" Cart Object: "+ currentUser.getMyCart());
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

@@ -1,6 +1,7 @@
 package uder.uder.HelperClasses;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -38,6 +39,10 @@ public class ShoppingCart implements Serializable {
 
     }
 
+    public String getItemQuantity(Product p){
+        return "" + cart.get(p);
+    }
+
     public int numberOfItems(){ return cart.size(); }
 
     public void removeItem(Product product){
@@ -46,9 +51,22 @@ public class ShoppingCart implements Serializable {
 
     }
 
+    public ArrayList<Product> toArrayList(){
+        ArrayList<Product> products = new ArrayList<>();
+        for(Product p: cart.keySet())
+            products.add(p);
+        return products;
+    }
+
     public void incrementQuantity(Product product){
         int quantity = Integer.parseInt(cart.get(product));
         quantity++;
+        cart.put(product, "" + quantity);
+    }
+
+    public void decrementQuantity(Product product){
+        int quantity = Integer.parseInt(cart.get(product));
+        quantity--;
         cart.put(product, "" + quantity);
     }
 

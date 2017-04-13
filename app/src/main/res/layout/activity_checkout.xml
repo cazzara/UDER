@@ -10,4 +10,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uder.uder.Activities.CheckoutActivity">
 
+
+    <TextView
+        android:id="@+id/checkoutMessage"
+        android:gravity="center"
+        android:text="@string/checkout_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textStyle="normal|bold" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv_cartList"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp" />
+
+    <Button
+        android:text="Submit Order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="45dp"
+        android:id="@+id/b_submitOrder" />
+
+    <Button
+        android:text="Go Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/b_submitOrder"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="45dp"
+        android:id="@+id/b_goBack" />
+
 </RelativeLayout>

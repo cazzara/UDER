@@ -8,12 +8,12 @@ public class Milker_User extends User{
 
     protected Order currentOrder;
 
-    public Milker_User(String fName, String lName, String uName, String pass, Order cOrder) {
-        super(fName, lName, uName, pass);
+    public Milker_User(String id, String fName, String lName, String uName, String pass, Order cOrder) {
+        super(id, fName, lName, uName, pass);
         currentOrder = cOrder;
     }
 
-    public Object getCurrentOrder(){
+    public Order getCurrentOrder(){
         return currentOrder;
     }
 
