@@ -39,9 +39,6 @@ public class ProductListActivity extends AppCompatActivity {
 
         final Button checkout = (Button) findViewById(R.id.b_checkout);
         final Button goBack = (Button) findViewById(R.id.b_goBack);
-
-
-
         products.add(new Product("1", "Horizon Whole Milk", "5.99"));
         products.add(new Product("2", "Dairy Pure Soy Milk", "1.99"));
         products.add(new Product("3", "Amish Farms 1% Milk", "3.99"));
@@ -50,6 +47,10 @@ public class ProductListActivity extends AppCompatActivity {
         products.add(new Product("6", "Wellsley Farms 2% Milk", "2.50"));
         products.add(new Product("7", "Tuscan Half and Half", "2.19"));
         products.add(new Product("8", "Dairy Pure 1% Milk", "1.99"));
+
+
+
+
 
         ListView productList = (ListView) findViewById(R.id.lv_productList);
         ProductAdapter adapter = new ProductAdapter(getApplicationContext(),products);

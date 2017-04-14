@@ -1,5 +1,8 @@
 package uder.uder.HelperClasses;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +51,6 @@ public class ShoppingCart implements Serializable {
     public void removeItem(Product product){
         if(cart.containsKey(product))
             cart.remove(product);
-
     }
 
     public ArrayList<Product> toArrayList(){
@@ -56,6 +58,26 @@ public class ShoppingCart implements Serializable {
         for(Product p: cart.keySet())
             products.add(p);
         return products;
+    }
+
+    public JSONObject cartContentsToJSON(){
+        JSONObject product_list = new JSONObject();
+        ArrayList<Product> products = toArrayList();
+        for(int i = 0; i < products.size(); i++) {
+            Product p = products.get(i);
+            try {
+                JSONObject json_p = new JSONObject();
+                json_p.put("id", p.getProductID());
+                json_p.put("name", p.getProductName());
+                json_p.put("price", p.getProductPrice());
+
+                product_list.put(""+i, json_p);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return product_list;
     }
 
     public void incrementQuantity(Product product){

@@ -10,11 +10,14 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import uder.uder.CheckoutAdapter;
 import uder.uder.HelperClasses.Product;
 import uder.uder.HelperClasses.Regular_User;
+import uder.uder.HelperClasses.RequestClass;
 import uder.uder.R;
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -67,6 +70,7 @@ public class CheckoutActivity extends AppCompatActivity {
                         }
                         else{
                             // Remove From Cart Selected
+                            currentUser.getShoppingCart().removeItem(p);
                             adapter.remove(p);
                             cartList.invalidateViews();
                         }
@@ -82,7 +86,18 @@ public class CheckoutActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // // TODO: 4/13/2017 Submit Order to Server, Clear cart and return to User Activity
+                // // TODO: 4/13/2017 Submit Order to Server
+
+                JSONObject cartContentsJSON = currentUser.getShoppingCart().cartContentsToJSON();
+
+                // RequestClass POSTOrder = new RequestClass();
+
+
+
+                currentUser.getShoppingCart().clearCart();
+                Intent returntoUserActivity = new Intent(v.getContext(), UserActivity.class);
+                returntoUserActivity.putExtra("user", currentUser);
+                CheckoutActivity.this.startActivity(returntoUserActivity);
             }
         });
 

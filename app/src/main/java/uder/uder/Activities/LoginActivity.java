@@ -15,12 +15,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.util.ArrayList;
+
 import uder.uder.HelperClasses.Filter;
 import uder.uder.HelperClasses.Milker_User;
+import uder.uder.HelperClasses.Product;
 import uder.uder.HelperClasses.Regular_User;
 import uder.uder.HelperClasses.ShoppingCart;
 import uder.uder.HelperClasses.User;
@@ -41,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         final Button b_login = (Button) findViewById(R.id.b_login);
         final ImageButton user_button = (ImageButton) findViewById(R.id.user_button);
         final ImageButton driver_button = (ImageButton) findViewById(R.id.driver_button);
+
+        JSONproducts();
 
 
         user_button.setOnClickListener(new View.OnClickListener(){
@@ -63,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.startActivity(getter_areaIntent);
             }
         });
+
 
 
         b_login.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if(status.equals("OK")){
-                    if(user_type.equals("reg_user")) {
+                    if(user_type.equals("buyer")) {
 
                         Regular_User user = new Regular_User(user_id, first_name, last_name, username, password, new ShoppingCart(), new Filter());
                         Intent intent = new Intent(LoginActivity.this, UserActivity.class);
@@ -154,6 +161,36 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.startActivity(registerIntent);
             }
         });
+    }
+
+    public void JSONproducts(){
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("1", "Horizon Whole Milk", "5.99"));
+        products.add(new Product("2", "Dairy Pure Soy Milk", "1.99"));
+        products.add(new Product("3", "Amish Farms 1% Milk", "3.99"));
+        products.add(new Product("4", "Horizon 2% Milk", "4.99"));
+        products.add(new Product("5", "Tuscan Whole Milk", "6.99"));
+        products.add(new Product("6", "Wellsley Farms 2% Milk", "2.50"));
+        products.add(new Product("7", "Tuscan Half and Half", "2.19"));
+        products.add(new Product("8", "Dairy Pure 1% Milk", "1.99"));
+
+        JSONObject product_list = new JSONObject();
+        for(int i = 0; i < products.size(); i++) {
+            Product p = products.get(i);
+            try {
+                JSONObject json_p = new JSONObject();
+                json_p.put("id", p.getProductID());
+                json_p.put("name", p.getProductName());
+                json_p.put("price", p.getProductPrice());
+
+                product_list.put(""+i, json_p);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(product_list.toString());
+        System.out.println(product_list.length());
 
     }
 }
