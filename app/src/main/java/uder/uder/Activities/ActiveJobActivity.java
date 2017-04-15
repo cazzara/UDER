@@ -2,6 +2,8 @@ package uder.uder.Activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -15,6 +17,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.List;
+
+import uder.uder.HelperClasses.Milker_User;
 import uder.uder.R;
 
 public class ActiveJobActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -22,11 +28,13 @@ public class ActiveJobActivity extends FragmentActivity implements OnMapReadyCal
     private GoogleMap mMap;
     final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
     private boolean LOCATION_PERMISSION_GRANTED;
+    private Milker_User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_job);
+        currentUser = (Milker_User) getIntent().getSerializableExtra("user");
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -45,7 +53,7 @@ public class ActiveJobActivity extends FragmentActivity implements OnMapReadyCal
      * installed Google Play services and returned to the app.
      */
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(GoogleMap googleMap){
         mMap = googleMap;
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
             LOCATION_PERMISSION_GRANTED = true;
@@ -56,11 +64,26 @@ public class ActiveJobActivity extends FragmentActivity implements OnMapReadyCal
         }
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(LOCATION_PERMISSION_GRANTED);
-        LatLng sju = new LatLng(40.7216, -73.7947);
-        mMap.addMarker(new MarkerOptions().position(sju).title("St. John's University"));
+        Address jobLocation = null;
+        try {
+            jobLocation = getJobAddress();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sju));
+        LatLng home = new LatLng(jobLocation.getLatitude(), jobLocation.getLongitude());
+        mMap.addMarker(new MarkerOptions().position(home).title("Home!"));
 
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(home));
+
+    }
+
+    public Address getJobAddress() throws IOException{
+        Geocoder gc = new Geocoder(this);
+
+        List<Address> list = gc.getFromLocationName(currentUser.getCurrentOrder().getAddress(), 1);
+        Address address = list.get(0);
+        return address;
     }
 
     @Override

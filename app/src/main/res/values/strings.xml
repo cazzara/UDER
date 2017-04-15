@@ -13,6 +13,7 @@
     <string name="orderHistoryTextView">Below are your orders:</string>
     <string name="product_select_message">Select a Product Below to Add to Shopping Cart</string>
     <string name="checkout_message">Select an Item Below to Modify \nShopping Cart Contents: </string>
+    <string name="order_select_message">Select an Order Below to Accept Delivery Job</string>
 
     <string-array name="milk_types">
         <item>"Any </item>
@@ -27,8 +28,8 @@
     <string-array name="milk_prices">
         <item>"Any </item>
         <item>"More than $7.00"</item>
-        <item>"$7.00 - $5.00"</item>
-        <item>"$4.99 - $3.00"</item>
+        <item>"$5.00 - $7.00"</item>
+        <item>"$3.00 - $4.99"</item>
         <item>"Less than $3.00"</item>
     </string-array>
 
@@ -53,5 +54,7 @@
         <item>Remove 1</item>
         <item>Remove From Cart</item>
     </string-array>
+    <string name="title_activity_create_order">CreateOrderActivity</string>
+    <string name="streetMessage">Enter House Number and Street</string>
 
 </resources>

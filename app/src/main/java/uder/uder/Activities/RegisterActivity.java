@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 // Awesome use of ternary conditional operator '?'
                 // condition ? value_if_true : value_if_false
-                final String user_type = rb_user.isSelected() ? rb_user.getText().toString() : rb_getter.getText().toString();
+                final String user_type = rb_user.isSelected() ? "buyer" : "milker";
 
 
                 Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>(){

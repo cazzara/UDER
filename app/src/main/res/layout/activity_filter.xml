@@ -10,7 +10,14 @@
         android:id="@+id/tv_filterText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:textSize="30sp" />
+    <TextView
+        android:text="Choose Product Type"
+        android:id="@+id/tv_typeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -18,17 +25,38 @@
         android:id="@+id/sp_typeList"
         android:padding="25dp" />
 
+    <TextView
+        android:text="Choose Price Range"
+        android:id="@+id/tv_priceLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/sp_priceRange"
         android:padding="25dp" />
 
+    <TextView
+        android:text="Choose Product Flavor"
+        android:id="@+id/tv_flavorLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/sp_flavor"
         android:padding="25dp" />
+
+    <TextView
+        android:text="Choose Product Brand"
+        android:id="@+id/tv_brandLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
 
     <Spinner
         android:layout_width="match_parent"

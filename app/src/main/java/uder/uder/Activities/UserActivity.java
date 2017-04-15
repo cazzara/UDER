@@ -88,7 +88,7 @@ public class UserActivity extends AppCompatActivity
         if(user.getShoppingCart().isEmpty())
             cartContents.setText("Shopping Cart is Empty");
         else
-            cartContents.setText(user.getShoppingCart().toString());
+            cartContents.setText(user.getShoppingCart().toString() + "\nTotal: " + user.getShoppingCart().getTotal());
     }
 
     public void displayFilterContents(TextView filterContents, Regular_User user){

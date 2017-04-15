@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:padding="6dp"
+    android:layout_height="250dp"
     android:background="?android:attr/colorAccent">
 
     <ImageView
@@ -17,29 +15,26 @@
         android:src="@android:drawable/ic_input_add" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/orderProducts"
         android:layout_width="fill_parent"
-        android:layout_height="26dip"
+        android:layout_height="120dp"
+        android:gravity="end|fill_vertical"
+        android:text="List of Products goes here"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/icon"
-        android:ellipsize="marquee"
-        android:text="Description"
-        android:maxLines="1"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/productName"
+        android:id="@+id/orderHeader"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/price"
+        android:layout_height="100dp"
+        android:layout_above="@id/orderProducts"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/icon"
         android:gravity="center_vertical"
-        android:text="Example application"
+        android:text="Order ID and Address go here"
         android:textSize="16sp"
         android:textStyle="normal|bold" />
-
 </RelativeLayout>

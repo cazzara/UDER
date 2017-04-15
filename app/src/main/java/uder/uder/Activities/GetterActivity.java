@@ -69,14 +69,11 @@ public class GetterActivity extends AppCompatActivity
         switch(item.getItemId()){
             case R.id.action_jobMap:
                 if(currentUser.getCurrentOrder() == null){
-//                    AlertDialog.Builder jobMapAlert = new AlertDialog.Builder(GetterActivity.this);
-//                    jobMapAlert.setMessage("No Active Job!")
-//                            .setNegativeButton("Exit", null)
-//                            .create()
-//                            .show();
-                    Intent activeJobIntent = new Intent(this, ActiveJobActivity.class);
-                    activeJobIntent.putExtra("user", currentUser);
-                    this.startActivity(activeJobIntent);
+                    AlertDialog.Builder jobMapAlert = new AlertDialog.Builder(GetterActivity.this);
+                    jobMapAlert.setMessage("No Active Job!")
+                            .setNegativeButton("Exit", null)
+                            .create()
+                            .show();
                 }
                 else{
                     Intent activeJobIntent = new Intent(this, ActiveJobActivity.class);
@@ -103,6 +100,9 @@ public class GetterActivity extends AppCompatActivity
             // Logout Sequence
         }
         else if(id == R.id.action_list_orders){
+            Intent orderListIntent = new Intent(this, OrderListActivity.class);
+            orderListIntent.putExtra("user", currentUser);
+            this.startActivity(orderListIntent);
 
         }
 

@@ -17,6 +17,10 @@ public class Milker_User extends User{
         return currentOrder;
     }
 
+    public void setCurrentOrder(Order currentOrder) {
+        this.currentOrder = currentOrder;
+    }
+
     public String toString(){
         return super.toString() + "Current Order: " + currentOrder ;
     }

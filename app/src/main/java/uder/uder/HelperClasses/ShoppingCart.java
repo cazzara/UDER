@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class ShoppingCart implements Serializable {
     // Shopping Cart --> Product , Quantity
     private HashMap<Product, String> cart;
+    private double total;
 
     public ShoppingCart(){ cart = new HashMap<>(); }
 
@@ -27,6 +28,15 @@ public class ShoppingCart implements Serializable {
 
     public void clearCart() { cart.clear(); }
 
+    public void calcTotal(){
+        total = 0;
+        for(Product p: cart.keySet())
+            total += Double.parseDouble(p.getProductPrice()) * Integer.parseInt(cart.get(p));
+
+    }
+
+    public String getTotal(){ return String.format("%.2f", total); }
+
     public boolean isEmpty(){
         if(cart.size() == 0)
             return true;
@@ -39,6 +49,7 @@ public class ShoppingCart implements Serializable {
             incrementQuantity(product);
         else
             cart.put(product, "1");
+        calcTotal();
 
     }
 
@@ -51,6 +62,7 @@ public class ShoppingCart implements Serializable {
     public void removeItem(Product product){
         if(cart.containsKey(product))
             cart.remove(product);
+        calcTotal();
     }
 
     public ArrayList<Product> toArrayList(){
@@ -84,12 +96,14 @@ public class ShoppingCart implements Serializable {
         int quantity = Integer.parseInt(cart.get(product));
         quantity++;
         cart.put(product, "" + quantity);
+        calcTotal();
     }
 
     public void decrementQuantity(Product product){
         int quantity = Integer.parseInt(cart.get(product));
         quantity--;
         cart.put(product, "" + quantity);
+        calcTotal();
     }
 
 

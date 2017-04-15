@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 import uder.uder.CheckoutAdapter;
 import uder.uder.HelperClasses.Product;
 import uder.uder.HelperClasses.Regular_User;
-import uder.uder.HelperClasses.RequestClass;
 import uder.uder.R;
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -32,8 +32,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
         final Button submit = (Button) findViewById(R.id.b_submitOrder);
         final Button goBack = (Button) findViewById(R.id.b_goBack);
+        final TextView displayTotal = (TextView) findViewById(R.id.tv_total);
         currentUser = (Regular_User) getIntent().getSerializableExtra("user");
         userCartContents = currentUser.getShoppingCart().toArrayList();
+        updateTotal(displayTotal);
 
 
         final ListView cartList = (ListView) findViewById(R.id.lv_cartList);
@@ -56,6 +58,7 @@ public class CheckoutActivity extends AppCompatActivity {
                         if(which == 0){
                             // Add 1 selected
                             currentUser.getShoppingCart().incrementQuantity(p);
+                            updateTotal(displayTotal);
                             cartList.invalidateViews();
                         }
                         else if(which == 1){
@@ -67,16 +70,21 @@ public class CheckoutActivity extends AppCompatActivity {
                                 currentUser.getShoppingCart().decrementQuantity(p);
                                 cartList.invalidateViews();
                             }
+                            updateTotal(displayTotal);
+
                         }
                         else{
                             // Remove From Cart Selected
                             currentUser.getShoppingCart().removeItem(p);
+                            updateTotal(displayTotal);
                             adapter.remove(p);
                             cartList.invalidateViews();
+
                         }
                     }
                 });
                 modifyCart.show();
+
 
             }
         });
@@ -86,18 +94,10 @@ public class CheckoutActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // // TODO: 4/13/2017 Submit Order to Server
 
-                JSONObject cartContentsJSON = currentUser.getShoppingCart().cartContentsToJSON();
-
-                // RequestClass POSTOrder = new RequestClass();
-
-
-
-                currentUser.getShoppingCart().clearCart();
-                Intent returntoUserActivity = new Intent(v.getContext(), UserActivity.class);
-                returntoUserActivity.putExtra("user", currentUser);
-                CheckoutActivity.this.startActivity(returntoUserActivity);
+                Intent createOrder = new Intent(v.getContext(), CreateOrderActivity.class);
+                createOrder.putExtra("user", currentUser);
+                CheckoutActivity.this.startActivity(createOrder);
             }
         });
 
@@ -110,5 +110,8 @@ public class CheckoutActivity extends AppCompatActivity {
                 v.getContext().startActivity(userIntent);
             }
         });
+    }
+    public void updateTotal(TextView total){
+        total.setText("Total: " + currentUser.getShoppingCart().getTotal());
     }
 }
