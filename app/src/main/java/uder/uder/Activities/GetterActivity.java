@@ -91,13 +91,15 @@ public class GetterActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fm = getFragmentManager();
 
         if (id == R.id.action_acct_mgmt) {
             // Account Management Fragment
         }
         else if (id == R.id.action_logout){
             // Logout Sequence
+            Intent logout = new Intent(this, LoginActivity.class);
+            currentUser = null;
+            this.startActivity(logout);
         }
         else if(id == R.id.action_list_orders){
             Intent orderListIntent = new Intent(this, OrderListActivity.class);

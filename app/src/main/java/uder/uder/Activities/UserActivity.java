@@ -173,6 +173,10 @@ public class UserActivity extends AppCompatActivity
         }
         else if (id == R.id.action_logout){
             // Logout Sequence
+            Intent logout = new Intent(this, LoginActivity.class);
+            currentUser = null;
+            this.startActivity(logout);
+
 
         }
         else if (id == R.id.action_list_items){

@@ -36,6 +36,7 @@ public class CheckoutActivity extends AppCompatActivity {
         currentUser = (Regular_User) getIntent().getSerializableExtra("user");
         userCartContents = currentUser.getShoppingCart().toArrayList();
         updateTotal(displayTotal);
+        testJSON();
 
 
         final ListView cartList = (ListView) findViewById(R.id.lv_cartList);
@@ -113,5 +114,9 @@ public class CheckoutActivity extends AppCompatActivity {
     }
     public void updateTotal(TextView total){
         total.setText("Total: " + currentUser.getShoppingCart().getTotal());
+    }
+
+    public void testJSON(){
+        System.out.println(currentUser.getShoppingCart().cartContentsToJSON());
     }
 }

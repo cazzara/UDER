@@ -4,9 +4,9 @@
     <!-- Job Map action button, leads to ActiveJob Activity -->
     <item
         android:id="@+id/action_jobMap"
-        android:icon="@drawable/map_icon"
+        android:icon="@drawable/ic_milkerorder"
         android:title="Job Map"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always" />
 
     <!-- Account Management, should always be in the overflow -->
 

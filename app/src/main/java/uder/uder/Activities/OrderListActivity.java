@@ -75,9 +75,9 @@ public class OrderListActivity extends AppCompatActivity {
         ArrayList<Product> plist3 = new ArrayList<>();
         plist3.add(products.get(4));
 
-        orders.add(new Order("1", "123 Washington Ave Jamaica NY 11432", "32", "Not Milked", null, "2017-10-9", plist1));
-        orders.add(new Order("2", "123 Oregon Ave Jamaica NY 11432", "33", "Not Milked", null, "2017-10-9", plist2));
-        orders.add(new Order("3", "123 Maryland Ave Jamaica NY 11432", "34", "Not Milked", null, "2017-10-9", plist3));
+//        orders.add(new Order("1", "123 Washington Ave Jamaica NY 11432", "32", "Not Milked", null, "2017-10-9", plist1));
+//        orders.add(new Order("2", "123 Oregon Ave Jamaica NY 11432", "33", "Not Milked", null, "2017-10-9", plist2));
+//        orders.add(new Order("3", "123 Maryland Ave Jamaica NY 11432", "34", "Not Milked", null, "2017-10-9", plist3));
 
         return orders;
     }

@@ -82,6 +82,7 @@ public class ShoppingCart implements Serializable {
                 json_p.put("id", p.getProductID());
                 json_p.put("name", p.getProductName());
                 json_p.put("price", p.getProductPrice());
+                json_p.put("quantity", cart.get(p));
 
                 product_list.put(""+i, json_p);
 

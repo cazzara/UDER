@@ -1,5 +1,8 @@
 package uder.uder.HelperClasses;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -15,9 +18,9 @@ public class Order implements Serializable{
     private String status;
     private String milker_id;
     private String timestamp;
-    private ArrayList<Product> products;
+    private ShoppingCart products;
 
-    public Order(String order_id, String address, String buyer_id, String status, String milker_id, String timestamp, ArrayList<Product> products) {
+    public Order(String order_id, String address, String buyer_id, String status, String milker_id, String timestamp, ShoppingCart products) {
         this.order_id = order_id;
         this.address = address;
         this.buyer_id = buyer_id;
@@ -39,6 +42,20 @@ public class Order implements Serializable{
         return address;
     }
 
+    public JSONObject orderToJSON(){
+        JSONObject order = new JSONObject();
+        try {
+            order.put("address", address);
+            order.put("buyer_id", buyer_id);
+            order.put("status", status);
+            order.put("created", timestamp);
+            order.put("products", products.cartContentsToJSON());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -48,18 +65,14 @@ public class Order implements Serializable{
     }
 
     public String toString(){
-        ShoppingCart cart = new ShoppingCart();
-        for(Product p: products){
-            cart.addItem(p);
-        }
-        return cart.toString() + " Total: " + cart.getTotal();
+        return products.toString() + " Total: " + products.getTotal();
     }
 
-    public ArrayList<Product> getProducts() {
+    public ShoppingCart getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<Product> products) {
+    public void setProducts(ShoppingCart products) {
         this.products = products;
     }
 

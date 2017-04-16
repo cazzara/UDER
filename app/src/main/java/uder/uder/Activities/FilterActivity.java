@@ -53,6 +53,18 @@ public class FilterActivity extends AppCompatActivity {
         milk_flavor_spinner.setAdapter(flavorSpinnerAdapter);
         milk_brand_spinner.setAdapter(brandSpinnerAdapter);
 
+        int typePos = typeSpinnerAdapter.getPosition(currentUser.getFilter().getMilk_type());
+        milk_type_spinner.setSelection(typePos);
+
+        int pricePos = priceSpinnerAdapter.getPosition(currentUser.getFilter().getMilk_price_range());
+        milk_price_spinner.setSelection(pricePos);
+
+        int flavorPos = flavorSpinnerAdapter.getPosition(currentUser.getFilter().getMilk_flavor());
+        milk_flavor_spinner.setSelection(flavorPos);
+
+        int brandPos = brandSpinnerAdapter.getPosition(currentUser.getFilter().getMilk_brand());
+        milk_brand_spinner.setSelection(brandPos);
+
         b_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
