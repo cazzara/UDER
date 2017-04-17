@@ -23,11 +23,22 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:id="@+id/tvOrder1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvOrderHistoryMessage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="77dp"
-        android:id="@+id/tvOrder1"
+        android:text="Order details here"
         android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/b_goBackOrderHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/tvOrderHistoryMessage"
+        android:layout_marginBottom="103dp"
+        android:text="Go Back" />
+
 </RelativeLayout>

@@ -10,4 +10,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uder.uder.Activities.OrderStatusActivity">
 
+    <TextView
+        android:id="@+id/tvOrderStatusMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:text="Order Message"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvOrderStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOrderStatusMessage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="83dp"
+        android:text="Order Status Here" />
+
+    <Button
+        android:id="@+id/b_goBackOrderStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="95dp"
+        android:layout_marginEnd="20dp"
+        android:layout_toStartOf="@+id/tvOrderStatus"
+        android:text="Go Back" />
 </RelativeLayout>

@@ -149,7 +149,6 @@ public class UserActivity extends AppCompatActivity
     }
 
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -158,17 +157,20 @@ public class UserActivity extends AppCompatActivity
         if (id == R.id.order_history) {
            //Start order history activity
             Intent orderHistoryIntent = new Intent(this, OrderHistoryActivity.class);
+            orderHistoryIntent.putExtra("user", currentUser);
             this.startActivity(orderHistoryIntent);
 
         } else if (id == R.id.order_status) {
             //Start order status activity
             Intent orderStatusIntent = new Intent(this, OrderStatusActivity.class);
+            orderStatusIntent.putExtra("user", currentUser);
             this.startActivity(orderStatusIntent);
 
         }
         else if (id == R.id.action_acct_mgmt){
             // Start Account management activity
             Intent acctMgmtIntent = new Intent(this, AccountSettingsActivity.class);
+            acctMgmtIntent.putExtra("user", currentUser);
             this.startActivity(acctMgmtIntent);
         }
         else if (id == R.id.action_logout){
