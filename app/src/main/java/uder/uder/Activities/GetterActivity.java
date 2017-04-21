@@ -93,7 +93,9 @@ public class GetterActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_acct_mgmt) {
-            // Account Management Fragment
+            Intent acctMgmtIntent = new Intent(this, AccountSettingsActivity.class);
+            acctMgmtIntent.putExtra("user", currentUser);
+            this.startActivity(acctMgmtIntent);
         }
         else if (id == R.id.action_logout){
             // Logout Sequence

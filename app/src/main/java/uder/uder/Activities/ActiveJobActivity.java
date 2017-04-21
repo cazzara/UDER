@@ -15,6 +15,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -71,10 +72,11 @@ public class ActiveJobActivity extends FragmentActivity implements OnMapReadyCal
             e.printStackTrace();
         }
 
-        LatLng home = new LatLng(jobLocation.getLatitude(), jobLocation.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(home).title("Home!"));
+        LatLng job = new LatLng(jobLocation.getLatitude(), jobLocation.getLongitude());
+        mMap.addMarker(new MarkerOptions().position(job).title("Order ID: " + currentUser.getCurrentOrder().getOrder_id())).showInfoWindow();
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(home));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(job));
 
     }
 

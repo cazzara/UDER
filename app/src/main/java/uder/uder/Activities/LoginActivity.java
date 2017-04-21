@@ -47,12 +47,11 @@ public class LoginActivity extends AppCompatActivity {
         final ImageButton user_button = (ImageButton) findViewById(R.id.user_button);
         final ImageButton driver_button = (ImageButton) findViewById(R.id.driver_button);
 
-        JSONproducts();
 
 
         user_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Regular_User me = new Regular_User("1", "Chris", "Azzara", "cazzara", "password", new ShoppingCart(), new Filter());
+                Regular_User me = new Regular_User("5", "Chris", "Azzara", "cazzara", "password", new ShoppingCart(), new Filter());
 
                 Intent user_areaIntent = new Intent(v.getContext(), UserActivity.class);
                 user_areaIntent.putExtra("user", me);
@@ -63,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
         driver_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Milker_User me = new Milker_User("1", "Chris", "Azzara", "cazzara", "password", null);
+                Milker_User me = new Milker_User("5", "Chris", "Azzara", "cazzara", "password", null);
                 Intent getter_areaIntent = new Intent(v.getContext(), GetterActivity.class);
 
                 getter_areaIntent.putExtra("user", me);
@@ -162,36 +161,5 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.startActivity(registerIntent);
             }
         });
-    }
-
-    public void JSONproducts(){
-        ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("1", "Horizon Whole Milk", "5.99"));
-        products.add(new Product("2", "Dairy Pure Soy Milk", "1.99"));
-        products.add(new Product("3", "Amish Farms 1% Milk", "3.99"));
-        products.add(new Product("4", "Horizon 2% Milk", "4.99"));
-        products.add(new Product("5", "Tuscan Whole Milk", "6.99"));
-        products.add(new Product("6", "Wellsley Farms 2% Milk", "2.50"));
-        products.add(new Product("7", "Tuscan Half and Half", "2.19"));
-        products.add(new Product("8", "Dairy Pure 1% Milk", "1.99"));
-
-        JSONObject product_list = new JSONObject();
-        for(int i = 0; i < products.size(); i++) {
-            Product p = products.get(i);
-            try {
-                JSONObject json_p = new JSONObject();
-                json_p.put("id", p.getProductID());
-                json_p.put("name", p.getProductName());
-                json_p.put("price", p.getProductPrice());
-
-                product_list.put(""+i, json_p);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println(product_list.toString());
-        System.out.println(product_list.length());
-
     }
 }

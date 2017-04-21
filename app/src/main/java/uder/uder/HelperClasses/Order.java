@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by cazza223 on 3/20/2017.
@@ -13,14 +14,14 @@ import java.util.ArrayList;
 public class Order implements Serializable{
 
     private String order_id;
-    private String address;
+    private HashMap<String, String> address;
     private String buyer_id;
     private String status;
     private String milker_id;
     private String timestamp;
     private ShoppingCart products;
 
-    public Order(String order_id, String address, String buyer_id, String status, String milker_id, String timestamp, ShoppingCart products) {
+    public Order(String order_id, HashMap<String,String> address, String buyer_id, String status, String milker_id, String timestamp, ShoppingCart products) {
         this.order_id = order_id;
         this.address = address;
         this.buyer_id = buyer_id;
@@ -39,15 +40,19 @@ public class Order implements Serializable{
     }
 
     public String getAddress() {
-        return address;
+        String addressString = "";
+        addressString += address.get("street") + address.get("city") + address.get("city") + address.get("zip");
+        return addressString;
     }
 
     public JSONObject orderToJSON(){
         JSONObject order = new JSONObject();
         try {
-            order.put("address", address);
+            order.put("street", address.get("street"));
+            order.put("state", address.get("state"));
+            order.put("city", address.get("city"));
+            order.put("zip", address.get("zip"));
             order.put("buyer_id", buyer_id);
-            order.put("status", status);
             order.put("created", timestamp);
             order.put("products", products.cartContentsToJSON());
         } catch (JSONException e) {
@@ -56,9 +61,11 @@ public class Order implements Serializable{
         return order;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    public void setStreet(String street){ address.put("street", street); }
+    public void setState(String state){ address.put("state", state); }
+    public void setCity(String city){ address.put("city", city); }
+    public void setZip(String zip){ address.put("zip", zip); }
+
 
     public String getBuyer_id() {
         return buyer_id;

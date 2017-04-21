@@ -1,5 +1,6 @@
 package uder.uder.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import uder.uder.HelperClasses.Milker_User;
 import uder.uder.HelperClasses.Order;
 import uder.uder.HelperClasses.Product;
+import uder.uder.HelperClasses.ShoppingCart;
 import uder.uder.OrderAdapter;
 import uder.uder.R;
 
@@ -43,12 +45,31 @@ public class OrderListActivity extends AppCompatActivity {
             }
         });
 
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent jobAccepted = new Intent(v.getContext(), GetterActivity.class);
+                jobAccepted.putExtra("user", currentUser);
+                v.getContext().startActivity(jobAccepted);
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentUser.setCurrentOrder(null);
+                Intent jobNotAccepted = new Intent(v.getContext(), GetterActivity.class);
+                jobNotAccepted.putExtra("user", currentUser);
+                v.getContext().startActivity(jobNotAccepted);
+            }
+        });
+
 
     }
 
     public ArrayList<Order> dummyOrders(){
         ArrayList<Order> orders = new ArrayList<>();
-        ArrayList<Product> plist1 = new ArrayList<>();
+        ShoppingCart plist1 = new ShoppingCart();
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product("1", "Horizon Whole Milk", "5.99"));
         products.add(new Product("2", "Dairy Pure Soy Milk", "1.99"));
@@ -59,26 +80,26 @@ public class OrderListActivity extends AppCompatActivity {
         products.add(new Product("7", "Tuscan Half and Half", "2.19"));
         products.add(new Product("8", "Dairy Pure 1% Milk", "1.99"));
 
-        plist1.add(products.get(0));
-        plist1.add(products.get(0));
-        plist1.add(products.get(4));
-        plist1.add(products.get(4));
-        plist1.add(products.get(3));
+        plist1.addItem(products.get(0));
+        plist1.addItem(products.get(0));
+        plist1.addItem(products.get(4));
+        plist1.addItem(products.get(4));
+        plist1.addItem(products.get(3));
 
-        ArrayList<Product> plist2 = new ArrayList<>();
-        plist2.add(products.get(3));
-        plist2.add(products.get(3));
-        plist2.add(products.get(5));
-        plist2.add(products.get(4));
-        plist2.add(products.get(6));
+        ShoppingCart plist2 = new ShoppingCart();
+        plist2.addItem(products.get(3));
+        plist2.addItem(products.get(3));
+        plist2.addItem(products.get(5));
+        plist2.addItem(products.get(4));
+        plist2.addItem(products.get(6));
 
-        ArrayList<Product> plist3 = new ArrayList<>();
-        plist3.add(products.get(4));
+        ShoppingCart plist3 = new ShoppingCart();
+        plist3.addItem(products.get(4));
+//
+//        orders.add(new Order("1", "8000 Utopia Pkwy Jamaica NY 11439", "32", "Not Milked", null, "2017-10-9", plist1));
+//        orders.add(new Order("2", "175-12 Mayfield Rd Jamaica NY 11432", "33", "Not Milked", null, "2017-10-9", plist2));
+//        orders.add(new Order("3", "168-12 Union Tpke, Jamaica, NY 11432", "34", "Not Milked", null, "2017-10-9", plist3));
 
-//        orders.add(new Order("1", "123 Washington Ave Jamaica NY 11432", "32", "Not Milked", null, "2017-10-9", plist1));
-//        orders.add(new Order("2", "123 Oregon Ave Jamaica NY 11432", "33", "Not Milked", null, "2017-10-9", plist2));
-//        orders.add(new Order("3", "123 Maryland Ave Jamaica NY 11432", "34", "Not Milked", null, "2017-10-9", plist3));
-
-        return orders;
+        return null;
     }
 }
