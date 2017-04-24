@@ -1,5 +1,6 @@
 # UDER
 St. John's University Software Engineering Project - Basic Commerce Android Mobile application
+
 This project is NOT intended for production use, there is no encryption or payment system used. This is merely a proof of concept project.
 
 # Premiss
