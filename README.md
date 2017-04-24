@@ -6,8 +6,8 @@ This project is NOT intended for production use, there is no encryption or payme
 This application addresses the need for people to have milk delivered to their residence or place of business and leverages crowd sourced labor to handle the deliveries. 
 
 There are two types of users in this application: 
-<br>A 'Buyer' is the type of user who views a list of available products and submits an order
-<br>A 'Milker' is a user type who views orders that need to be fulfilled and delivers the products to the delivery address
+<br>A '<b>Buyer</b>' is the type of user who views a list of available products and submits an order
+<br>A '<b>Milker</b>' is a user type who views orders that need to be fulfilled and delivers the products to the delivery address
 
 The app communicates via JSON requests with an API running on an Amazon EC2 instance
 
