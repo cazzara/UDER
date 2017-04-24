@@ -53,6 +53,10 @@ public class ShoppingCart implements Serializable {
 
     }
 
+    public void put(Product p, String quantity){
+        cart.put(p, quantity);
+    }
+
     public String getItemQuantity(Product p){
         return "" + cart.get(p);
     }

@@ -7,28 +7,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import uder.uder.HelperClasses.Filter;
 import uder.uder.HelperClasses.Product;
 import uder.uder.HelperClasses.Regular_User;
 import uder.uder.HelperClasses.RequestClass;
-import uder.uder.HelperClasses.ShoppingCart;
-import uder.uder.HelperClasses.User;
 import uder.uder.ProductAdapter;
 import uder.uder.R;
 
@@ -44,14 +37,14 @@ public class ProductListActivity extends AppCompatActivity {
         getProducts(currentUser.getFilter());
 
 
-
-
         final Button checkout = (Button) findViewById(R.id.b_checkout);
         final Button goBack = (Button) findViewById(R.id.b_goBack);
 
         ListView productList = (ListView) findViewById(R.id.lv_productList);
         ProductAdapter adapter = new ProductAdapter(getApplicationContext(),products);
         productList.setAdapter(adapter);
+        productList.invalidateViews();
+
 
         productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -90,6 +83,8 @@ public class ProductListActivity extends AppCompatActivity {
                 v.getContext().startActivity(userIntent);
             }
         });
+
+
     }
 
     @Override

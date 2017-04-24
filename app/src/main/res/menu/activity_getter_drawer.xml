@@ -6,6 +6,10 @@
             android:id="@+id/action_list_orders"
             android:title="View Available Orders"
             android:icon="@android:drawable/ic_menu_more" />
+        <item
+            android:id="@+id/action_order_details"
+            android:icon="@drawable/ic_order_details"
+            android:title="Order Details" />
 
         <item
             android:id="@+id/action_acct_mgmt"

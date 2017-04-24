@@ -97,6 +97,12 @@ public class GetterActivity extends AppCompatActivity
             acctMgmtIntent.putExtra("user", currentUser);
             this.startActivity(acctMgmtIntent);
         }
+        else if (id == R.id.action_order_details){
+            Intent jobDetails = new Intent(this, ActiveJobDetails.class);
+            jobDetails.putExtra("user", currentUser);
+            this.startActivity(jobDetails);
+
+        }
         else if (id == R.id.action_logout){
             // Logout Sequence
             Intent logout = new Intent(this, LoginActivity.class);

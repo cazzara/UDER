@@ -58,7 +58,8 @@
         <activity android:name=".Activities.AccountSettingsActivity" />
         <activity android:name=".Activities.ProductListActivity" />
         <activity android:name=".Activities.OrderListActivity" />
-        <activity android:name=".Activities.CreateOrderActivity"></activity>
+        <activity android:name=".Activities.CreateOrderActivity" />
+        <activity android:name=".Activities.ActiveJobDetails"></activity>
     </application>
 
 </manifest>
