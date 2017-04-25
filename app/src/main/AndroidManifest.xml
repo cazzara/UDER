@@ -17,11 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".Activities.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.RegisterActivity" />
         <activity android:name=".Activities.CheckoutActivity" />
@@ -59,7 +54,14 @@
         <activity android:name=".Activities.ProductListActivity" />
         <activity android:name=".Activities.OrderListActivity" />
         <activity android:name=".Activities.CreateOrderActivity" />
-        <activity android:name=".Activities.ActiveJobDetails"></activity>
+        <activity android:name=".Activities.ActiveJobDetails" />
+        <activity android:name=".Activities.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
