@@ -4,16 +4,18 @@
     android:id="@+id/activity_checkout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#9FB0C4"
     tools:context="uder.uder.Activities.CheckoutActivity">
 
 
     <TextView
         android:id="@+id/checkoutMessage"
-        android:gravity="center"
-        android:text="@string/checkout_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/checkout_message"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#486486"
         android:textStyle="normal|bold" />
 
     <ListView
@@ -24,31 +26,41 @@
         android:layout_marginTop="50dp" />
 
     <Button
-        android:text="Enter Address Info"
+        android:id="@+id/b_submitOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/b_submitOrder"
+        android:layout_alignEnd="@+id/tv_total"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/tv_total" />
+        android:background="#CDD6E1"
+        android:text="Enter Address Info"
+        android:textColor="#486486"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Button
-        android:text="Go Back"
+        android:id="@+id/b_goBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/b_submitOrder"
         android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/b_submitOrder"
         android:layout_marginStart="45dp"
-        android:id="@+id/b_goBack" />
+        android:background="#CDD6E1"
+        android:text="Go Back"
+        android:textColor="#486486"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
         android:layout_above="@+id/b_submitOrder"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="27dp"
         android:layout_marginEnd="30dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#486486"
+        android:textStyle="bold" />
 
 </RelativeLayout>

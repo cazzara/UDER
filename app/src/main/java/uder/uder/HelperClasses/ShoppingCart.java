@@ -35,7 +35,10 @@ public class ShoppingCart implements Serializable {
 
     }
 
-    public String getTotal(){ return String.format("%.2f", total); }
+    public String getTotal(){
+        calcTotal();
+        return String.format("%.2f", total);
+    }
 
     public boolean isEmpty(){
         if(cart.size() == 0)

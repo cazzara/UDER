@@ -27,7 +27,8 @@ import uder.uder.R;
 
 public class ProductListActivity extends AppCompatActivity {
 
-    private ArrayList<Product> products = new ArrayList<>();
+    private ArrayList<Product> products;
+    private ProductAdapter adapter;
     private Regular_User currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +42,8 @@ public class ProductListActivity extends AppCompatActivity {
         final Button goBack = (Button) findViewById(R.id.b_goBack);
 
         ListView productList = (ListView) findViewById(R.id.lv_productList);
-        ProductAdapter adapter = new ProductAdapter(getApplicationContext(),products);
+        adapter = new ProductAdapter(getApplicationContext(),products);
         productList.setAdapter(adapter);
-        productList.invalidateViews();
 
 
         productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -117,6 +117,7 @@ public class ProductListActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                adapter.notifyDataSetChanged();
             }
         };
 
@@ -168,9 +169,12 @@ public class ProductListActivity extends AppCompatActivity {
 
             }
         });
+
         RequestQueue queue = Volley.newRequestQueue(ProductListActivity.this);
 
+
         System.out.println("Sent to Server: " + productFilters.toString());
+        products = new ArrayList<>();
         queue.add(getProductsFromServer);
 
 

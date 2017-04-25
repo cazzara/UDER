@@ -94,6 +94,7 @@ public class CreateOrderActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent userActivity = new Intent(getApplicationContext(), UserActivity.class);
+                                        currentUser.getShoppingCart().clearCart();
                                         userActivity.putExtra("user", currentUser);
                                         userActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         getApplicationContext().startActivity(userActivity);

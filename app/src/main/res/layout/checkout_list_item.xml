@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:padding="6dp"
-    android:background="?android:attr/colorAccent">
+    android:background="#486486"
+    android:orientation="vertical"
+    android:padding="6dp">
 
     <ImageView
         android:id="@+id/icon"
@@ -13,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="6dip"
         android:contentDescription="TODO"
-        android:src="@android:drawable/ic_input_add" />
+        android:src="@drawable/ic_product_item" />
 
     <TextView
         android:id="@+id/priceNquantity"
@@ -23,9 +24,10 @@
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/icon"
         android:ellipsize="marquee"
-        android:text="Description"
         android:maxLines="1"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+        android:text="Description"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#F0F3F6" />
 
     <TextView
         android:id="@+id/productName"
@@ -38,6 +40,7 @@
         android:layout_toRightOf="@id/icon"
         android:gravity="center_vertical"
         android:text="Example application"
+        android:textColor="#F0F3F6"
         android:textSize="16sp"
         android:textStyle="normal|bold" />
 

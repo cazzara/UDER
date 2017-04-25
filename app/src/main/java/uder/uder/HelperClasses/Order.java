@@ -41,7 +41,7 @@ public class Order implements Serializable{
 
     public String getAddress() {
         String addressString = "";
-        addressString += address.get("street") + address.get("city") + address.get("city") + address.get("zip");
+        addressString += address.get("street") + " " +  address.get("city") + " " + address.get("state") + " " + address.get("zip");
         return addressString;
     }
 
