@@ -109,8 +109,8 @@ public class OrderListActivity extends AppCompatActivity {
                             String state = order.getString("state");
                             String zip = order.getString("zip");
                             String created = order.getString("date");
-                            String order_id = String.valueOf(order.getInt("order_id"));
-                            String buyer_id = String.valueOf(order.getInt("buyer_id"));
+                            String order_id = order.getString("order_id");
+                            String buyer_id = order.getString("buyer_id");
                             HashMap<String, String> address = new HashMap<>();
                             address.put("street", street);
                             address.put("city", city);
@@ -118,11 +118,11 @@ public class OrderListActivity extends AppCompatActivity {
                             address.put("zip", zip);
                             for (int j = 0; j < products.length(); j++) {
                                 JSONObject aProduct = products.getJSONObject(j);
-                                String product_id = String.valueOf(aProduct.getInt("product_id"));
+                                String product_id = aProduct.getString("product_id");
                                 String name = aProduct.getString("name");
-                                String price = String.valueOf(aProduct.getDouble("price"));
+                                String price = aProduct.getString("price");
                                 Product p = new Product(product_id, name, price);
-                                String quantity = String.valueOf(aProduct.getInt("quantity"));
+                                String quantity = aProduct.getString("quantity");
                                 productQuantities.put(p, quantity);
                             }
                             Order o = new Order(order_id, address, buyer_id, "Not Milked", null, created, productQuantities);

@@ -43,7 +43,6 @@ public class RegisterActivity extends AppCompatActivity {
         final Button b_signup = (Button) findViewById(R.id.b_signup);
 
         b_signup.setOnClickListener(new View.OnClickListener() {
-            final JSONObject serverResponse = new JSONObject();
 
             @Override
             public void onClick(View v) {
@@ -64,7 +63,11 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try{
-                            serverResponse.put("success", response);
+                            System.out.println(response.toString());
+                            if(response.getString("status").equals("OK")){
+                                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                                getApplicationContext().startActivity(login);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -83,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                RequestClass POSTRegister = new RequestClass("http://34.208.156.179:4567/api/v1/register", params, listener, new Response.ErrorListener() {
+                RequestClass POSTRegister = new RequestClass("http://34.208.156.179:4567/api/v1/auth/register", params, listener, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         System.err.println(error);
@@ -93,8 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
                 RequestQueue queue =  Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(POSTRegister);
 
-                // TODO do something with server response
-                // serverResponse.get()
             }
 
         });

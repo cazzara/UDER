@@ -77,19 +77,46 @@ public class LoginActivity extends AppCompatActivity {
                 final String username = et_username.getText().toString();
                 final String password = et_password.getText().toString();
 
-                final JSONObject serverResponse = new JSONObject();
                 Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>(){
-
-
                     @Override
                     public void onResponse(JSONObject response) {
+                        System.out.println(response.toString());
                         try{
-                            serverResponse.put("status", response);
+                            String status = response.getString("status");
+                            String user_type = response.getString("user_type");
+                            String user_id = response.getString("user_id");
+                            String first_name = response.getString("first_name");
+                            String last_name = response.getString("last_name");
 
-                        } catch (JSONException e){
+                            if(status.equals("OK")){
+                                if(user_type.equals("buyer")) {
+
+                                    Regular_User user = new Regular_User(user_id, first_name, last_name, username, password, new ShoppingCart(), new Filter());
+                                    Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+
+                                    intent.putExtra("user", user);
+                                    LoginActivity.this.startActivity(intent);
+                                }
+                                else{
+                                    Milker_User user = new Milker_User(user_id, first_name, last_name, username, password, null);
+                                    Intent intent = new Intent(LoginActivity.this, GetterActivity.class);
+                                    intent.putExtra("user", user);
+                                    LoginActivity.this.startActivity(intent);
+                                }
+                            }
+                            else{
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                builder.setMessage("Login Failed")
+                                        .setNegativeButton("Retry", null)
+                                        .create()
+                                        .show();
+                            }
+
+
+                    }catch (JSONException e){
                             e.printStackTrace();
                         }
-                    }
+                }
                 };
 
                 JSONObject params = new JSONObject();
@@ -101,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 System.out.println(params.toString());
-                RequestClass POSTLogin = new RequestClass("http://34.208.156.179:4567", params, listener, new Response.ErrorListener() {
+                RequestClass POSTLogin = new RequestClass("http://34.208.156.179:4567/api/v1/auth/login", params, listener, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         System.err.println(error);
@@ -111,46 +138,6 @@ public class LoginActivity extends AppCompatActivity {
                 RequestQueue queue =  Volley.newRequestQueue(LoginActivity.this);
                 queue.add(POSTLogin);
 
-
-                String status = null;
-                String user_type = null;
-                String user_id = null;
-                String first_name = null;
-                String last_name = null;
-
-                try {
-                    status = serverResponse.getString("status");
-                    user_type = serverResponse.getString("user_type");
-                    user_id = serverResponse.getString("id");
-                    first_name = serverResponse.getString("first_name");
-                    last_name = serverResponse.getString("last_name");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                if(status.equals("OK")){
-                    if(user_type.equals("buyer")) {
-
-                        Regular_User user = new Regular_User(user_id, first_name, last_name, username, password, new ShoppingCart(), new Filter());
-                        Intent intent = new Intent(LoginActivity.this, UserActivity.class);
-
-                        intent.putExtra("user", user);
-                        LoginActivity.this.startActivity(intent);
-                    }
-                    else{
-                        Milker_User user = new Milker_User(user_id, first_name, last_name, username, password, null);
-                        Intent intent = new Intent(LoginActivity.this, GetterActivity.class);
-                        intent.putExtra("user", user);
-                        LoginActivity.this.startActivity(intent);
-                    }
-                }
-                else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setMessage("Login Failed")
-                            .setNegativeButton("Retry", null)
-                            .create()
-                            .show();
-                }
             }
         });
 
