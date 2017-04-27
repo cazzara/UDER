@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="300dp"
     android:background="#486486"
     android:orientation="vertical">
 
@@ -18,10 +18,11 @@
     <TextView
         android:id="@+id/orderProducts"
         android:layout_width="fill_parent"
-        android:layout_height="120dp"
+        android:layout_height="220dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:gravity="end|fill_vertical"
+        android:maxLines="9"
         android:text="List of Products goes here"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         android:textColor="#F0F3F6" />
@@ -29,7 +30,7 @@
     <TextView
         android:id="@+id/orderHeader"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_above="@id/orderProducts"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"

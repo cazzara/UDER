@@ -24,7 +24,7 @@ public class SplashScreen extends AppCompatActivity {
     private GiftView giftView;
     private ProgressBar progressBar;
 
-    private final int SPLASH_DISPLAY_TIMER = 10000;
+    private final int SPLASH_DISPLAY_TIMER = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

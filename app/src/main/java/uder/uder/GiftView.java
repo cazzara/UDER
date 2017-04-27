@@ -76,10 +76,11 @@ public class GiftView extends View {
 
             mMovie.setTime(relTime);
 
-            mMovie.draw(canvas, 0, 0);
-            invalidate();
+            mMovie.draw(canvas, 100, 20);
+            this.invalidate();
         }
     }
+
 
     public void setGifImageResource(int id) {
         mInputStream = mContext.getResources().openRawResource(id);

@@ -22,7 +22,7 @@ public class ShoppingCart implements Serializable {
     public String toString() {
         String cartContents = "";
         for(Product product : cart.keySet())
-           cartContents += product + " Quantity: " + cart.get(product) + "\n";
+           cartContents += product + " \nQuantity: " + cart.get(product) + "\n";
         return cartContents;
     }
 
