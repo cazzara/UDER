@@ -17,7 +17,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,19 +31,22 @@ import uder.uder.R;
 public class OrderStatusActivity extends AppCompatActivity {
 
     private Regular_User currentUser;
+    private TextView orderStatus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_status);
         currentUser = (Regular_User) getIntent().getSerializableExtra("user");
         final TextView orderStatusMessage = (TextView) findViewById(R.id.tvOrderStatusMessage);
-        orderStatusMessage.setText("Order Status for " + currentUser.getfName() + " " + currentUser.getlName());
+        orderStatusMessage.setText("Displaying Order Status for " + currentUser.getfName() + " " + currentUser.getlName());
 
-        final TextView orderStatus = (TextView) findViewById(R.id.tvOrderStatus);
+        orderStatus = (TextView) findViewById(R.id.tvOrderStatus);
         final Button goBack = (Button) findViewById(R.id.b_goBackOrderStatus);
+        RequestQueue queue = Volley.newRequestQueue(OrderStatusActivity.this);
 
-        ArrayList<Order> orders = getOrderStatus();
-        updateOrderStatusMessage(orderStatus, orders);
+
+        getOrderStatus(queue);
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,20 +59,8 @@ public class OrderStatusActivity extends AppCompatActivity {
 
     }
 
-    public void updateOrderStatusMessage(TextView message, ArrayList<Order> orderStatus){
-        String status = "";
-        for(Order o: orderStatus){
-            status += o.toString();
-        }
-        if(status.equals("")){
-            message.setText("No Active Orders!");
-        }
-        else {
-            message.setText(status);
-        }
-    }
 
-    public ArrayList<Order> getOrderStatus(){
+    public void getOrderStatus(RequestQueue queue){
         final ArrayList<Order> orders = new ArrayList<>();
         Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
             @Override
@@ -107,9 +97,14 @@ public class OrderStatusActivity extends AppCompatActivity {
                                 String quantity = aProduct.getString("quantity");
                                 productQuantities.put(p, quantity);
                             }
-                            Order o = new Order(order_id, address, buyer_id, order_status, null, created, productQuantities);
+                            Order o = new Order(order_id, address, buyer_id, order_status, milker_id, created, productQuantities);
                             orders.add(o);
                         }
+                        String status = "";
+                        for(Order o : orders){
+                            status += o.toString() + "\n\n";
+                        }
+                        orderStatus.setText(status);
 
                     }
 
@@ -138,8 +133,10 @@ public class OrderStatusActivity extends AppCompatActivity {
             }
         });
 
-        RequestQueue queue = Volley.newRequestQueue(OrderStatusActivity.this);
+
         queue.add(getOrderStatusFromServer);
-        return orders;
+
+
+
     }
 }

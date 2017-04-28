@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 else{
                                     Milker_User user = new Milker_User(user_id, first_name, last_name, username, password, null);
+                                    // // TODO: 4/27/2017 Return milker active order 
                                     Intent intent = new Intent(LoginActivity.this, GetterActivity.class);
                                     intent.putExtra("user", user);
                                     LoginActivity.this.startActivity(intent);

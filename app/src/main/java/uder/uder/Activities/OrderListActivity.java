@@ -67,10 +67,41 @@ public class OrderListActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         currentUser.setCurrentOrder(orders.get(position));
-                        Intent milkerIntent = new Intent(getApplicationContext(), GetterActivity.class);
-                        milkerIntent.putExtra("user", currentUser);
-                        milkerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        getApplicationContext().startActivity(milkerIntent);
+                        Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    if (response.getString("status").equals("OK")) {
+                                        Intent milkerIntent = new Intent(getApplicationContext(), GetterActivity.class);
+                                        milkerIntent.putExtra("user", currentUser);
+                                        milkerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        getApplicationContext().startActivity(milkerIntent);
+                                    }
+                                }
+                                catch (JSONException error){
+                                    System.out.println(error);
+                                }
+
+                            }
+                        };
+                        JSONObject params = new JSONObject();
+                        try{
+                            params.put("order_id", currentUser.getCurrentOrder().getOrder_id());
+                            params.put("milker_id", currentUser.getUserID());
+                        } catch (JSONException error){
+                            System.out.println(error);
+                        }
+
+                        RequestClass orderComplete = new RequestClass("http://34.208.156.179:4567/api/v1/orders/accept", params, listener, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                error.printStackTrace();
+                            }
+                        });
+
+                        RequestQueue queue = Volley.newRequestQueue(OrderListActivity.this);
+                        queue.add(orderComplete);
+
                     }
                 }).create().show();
             }

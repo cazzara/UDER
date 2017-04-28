@@ -12,8 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import uder.uder.HelperClasses.Milker_User;
+import uder.uder.HelperClasses.RequestClass;
 import uder.uder.R;
 
 public class GetterActivity extends AppCompatActivity
@@ -27,6 +38,59 @@ public class GetterActivity extends AppCompatActivity
         setContentView(R.layout.activity_getter);
         currentUser = (Milker_User) getIntent().getSerializableExtra("user");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Button orderComplete = (Button) findViewById(R.id.b_completeOrder);
+        orderComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentUser.getCurrentOrder() == null){
+                    AlertDialog.Builder jobMapAlert = new AlertDialog.Builder(GetterActivity.this);
+                    jobMapAlert.setMessage("No Active Job!")
+                            .setNegativeButton("Exit", null)
+                            .create()
+                            .show();
+                }
+                else{
+                    Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                if (response.getString("status").equals("OK")) {
+                                    currentUser.setCurrentOrder(null);
+                                    AlertDialog.Builder jobMapAlert = new AlertDialog.Builder(GetterActivity.this);
+                                    jobMapAlert.setMessage("Job Complete!")
+                                            .setNegativeButton("Exit", null)
+                                            .create()
+                                            .show();
+
+                                }
+                            }
+                            catch (JSONException error){
+                                System.out.println(error);
+                            }
+
+                        }
+                    };
+                    JSONObject params = new JSONObject();
+                    try{
+                        params.put("order_id", currentUser.getCurrentOrder().getOrder_id());
+                    } catch (JSONException error){
+                        System.out.println(error);
+                    }
+
+                    RequestClass orderComplete = new RequestClass("http://34.208.156.179:4567/api/v1/orders/complete", params, listener, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                        }
+                    });
+
+                    RequestQueue queue = Volley.newRequestQueue(GetterActivity.this);
+                    queue.add(orderComplete);
+
+                }
+            }
+        });
+
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
