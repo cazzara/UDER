@@ -54,7 +54,6 @@ public class OrderListActivity extends AppCompatActivity {
         System.out.println(orders.toString());
         adapter = new OrderAdapter(getApplicationContext(), orders);
         orderList.setAdapter(adapter);
-        orderList.invalidateViews();
 
         orderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,7 +91,7 @@ public class OrderListActivity extends AppCompatActivity {
                             System.out.println(error);
                         }
 
-                        RequestClass orderComplete = new RequestClass("http://34.208.156.179:4567/api/v1/orders/accept", params, listener, new Response.ErrorListener() {
+                        RequestClass orderAccept = new RequestClass("http://34.208.156.179:4567/api/v1/orders/accept", params, listener, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 error.printStackTrace();
@@ -100,8 +99,7 @@ public class OrderListActivity extends AppCompatActivity {
                         });
 
                         RequestQueue queue = Volley.newRequestQueue(OrderListActivity.this);
-                        queue.add(orderComplete);
-
+                        queue.add(orderAccept);
                     }
                 }).create().show();
             }

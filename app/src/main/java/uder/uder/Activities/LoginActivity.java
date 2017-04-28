@@ -1,5 +1,6 @@
 package uder.uder.Activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -133,6 +134,15 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         System.err.println(error);
+                        AlertDialog.Builder serverError = new AlertDialog.Builder(LoginActivity.this);
+                        serverError.setTitle("Something went wrong :(");
+                        serverError.setMessage("Sorry your request could not be completed at this time. Try again later.");
+                        serverError.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).create().show();
                     }
                 });
 

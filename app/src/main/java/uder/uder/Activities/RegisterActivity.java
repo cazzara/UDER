@@ -1,6 +1,8 @@
 package uder.uder.Activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -66,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                             System.out.println(response.toString());
                             if(response.getString("status").equals("OK")){
                                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                                login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 getApplicationContext().startActivity(login);
                             }
                         } catch (JSONException e) {
@@ -90,6 +93,17 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         System.err.println(error);
+                        AlertDialog.Builder serverError = new AlertDialog.Builder(RegisterActivity.this);
+                        serverError.setTitle("Something went wrong :(");
+                        serverError.setMessage("Sorry your request could not be completed at this time. Try again later.");
+                        serverError.setNegativeButton("Back to Login Page", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                                loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                getApplicationContext().startActivity(loginIntent);
+                            }
+                        }).create().show();
                     }
                 });
 

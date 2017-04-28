@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -26,12 +27,14 @@ import uder.uder.HelperClasses.Product;
 import uder.uder.HelperClasses.Regular_User;
 import uder.uder.HelperClasses.RequestClass;
 import uder.uder.HelperClasses.ShoppingCart;
+import uder.uder.OrderAdapter;
 import uder.uder.R;
 
 public class OrderStatusActivity extends AppCompatActivity {
 
     private Regular_User currentUser;
-    private TextView orderStatus;
+    private ArrayList<Order> orders;
+    private OrderAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +44,14 @@ public class OrderStatusActivity extends AppCompatActivity {
         final TextView orderStatusMessage = (TextView) findViewById(R.id.tvOrderStatusMessage);
         orderStatusMessage.setText("Displaying Order Status for " + currentUser.getfName() + " " + currentUser.getlName());
 
-        orderStatus = (TextView) findViewById(R.id.tvOrderStatus);
+        getOrderStatus();
+
+        ListView orderStatusList = (ListView) findViewById(R.id.lv_orderStatusList);
         final Button goBack = (Button) findViewById(R.id.b_goBackOrderStatus);
-        RequestQueue queue = Volley.newRequestQueue(OrderStatusActivity.this);
+        adapter = new OrderAdapter(getApplicationContext(), orders);
+        orderStatusList.setAdapter(adapter);
 
 
-        getOrderStatus(queue);
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +65,8 @@ public class OrderStatusActivity extends AppCompatActivity {
     }
 
 
-    public void getOrderStatus(RequestQueue queue){
-        final ArrayList<Order> orders = new ArrayList<>();
+    public void getOrderStatus(){
+
         Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -100,17 +105,12 @@ public class OrderStatusActivity extends AppCompatActivity {
                             Order o = new Order(order_id, address, buyer_id, order_status, milker_id, created, productQuantities);
                             orders.add(o);
                         }
-                        String status = "";
-                        for(Order o : orders){
-                            status += o.toString() + "\n\n";
-                        }
-                        orderStatus.setText(status);
-
                     }
 
                 }catch (JSONException e) {
                     e.printStackTrace();
                 }
+                adapter.notifyDataSetChanged();
             }
         };
 
@@ -133,7 +133,8 @@ public class OrderStatusActivity extends AppCompatActivity {
             }
         });
 
-
+        RequestQueue queue = Volley.newRequestQueue(OrderStatusActivity.this);
+        orders = new ArrayList<>();
         queue.add(getOrderStatusFromServer);
 
 

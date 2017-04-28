@@ -55,7 +55,13 @@ public class OrderAdapter extends ArrayAdapter<Order> {
 
         lastPosition = position;
 
-        viewHolder.orderHeader.setText("OrderID: " + order.getOrder_id() + " \nDelivery Address: \n" + order.getAddress());
+        if(order.getStatus() != null) {
+
+            viewHolder.orderHeader.setText("OrderID: " + order.getOrder_id() + " \nDelivery Address: \n" + order.getAddress() + "\nOrder Status: " +order.getStatus());
+        }
+        else{
+            viewHolder.orderHeader.setText("OrderID: " + order.getOrder_id() + " \nDelivery Address: \n" + order.getAddress());
+        }
         viewHolder.orderContents.setText(order.toString());
 
         // Return the completed view to render on screen

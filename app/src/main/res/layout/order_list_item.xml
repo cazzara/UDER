@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="350dp"
     android:background="#486486"
     android:orientation="vertical">
 
@@ -30,7 +30,7 @@
     <TextView
         android:id="@+id/orderHeader"
         android:layout_width="fill_parent"
-        android:layout_height="80dp"
+        android:layout_height="130dp"
         android:layout_above="@id/orderProducts"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"

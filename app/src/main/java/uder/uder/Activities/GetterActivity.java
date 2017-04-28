@@ -39,17 +39,10 @@ public class GetterActivity extends AppCompatActivity
         currentUser = (Milker_User) getIntent().getSerializableExtra("user");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         final Button orderComplete = (Button) findViewById(R.id.b_completeOrder);
+        if(currentUser.getCurrentOrder() == null) { orderComplete.setVisibility(View.INVISIBLE); }
         orderComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentUser.getCurrentOrder() == null){
-                    AlertDialog.Builder jobMapAlert = new AlertDialog.Builder(GetterActivity.this);
-                    jobMapAlert.setMessage("No Active Job!")
-                            .setNegativeButton("Exit", null)
-                            .create()
-                            .show();
-                }
-                else{
                     Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
@@ -87,7 +80,7 @@ public class GetterActivity extends AppCompatActivity
                     RequestQueue queue = Volley.newRequestQueue(GetterActivity.this);
                     queue.add(orderComplete);
 
-                }
+
             }
         });
 
