@@ -4,18 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#9FB0C4"
     tools:context="uder.uder.Activities.CreateOrderActivity">
 
     <TextView
         android:id="@+id/tv_streetAddress"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
-        android:text="@string/streetMessage"
+        android:textAlignment="center"
+        android:textColor="#F0F3F6"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:background="#486486"
+        android:padding="13dp"
+        android:textStyle="normal|bold"
+        android:text="@string/streetMessage"
+         />
 
     <EditText
         android:id="@+id/et_addressLine1"
@@ -26,6 +31,9 @@
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="Address Line 1"
+        android:textColor="#486486"
+        android:textColorHint="#486486"
+        android:textColorLink="#F0F3F6"
         android:inputType="textPostalAddress"
         android:textAlignment="center" />
 
@@ -37,20 +45,27 @@
         android:layout_below="@+id/et_addressLine1"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:textColor="#486486"
+        android:textColorHint="#486486"
+        android:textColorLink="#F0F3F6"
         android:hint="Address Line 2"
         android:inputType="textPostalAddress"
         android:textAlignment="center" />
 
     <TextView
         android:id="@+id/tv_city"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_addressLine2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:text="Enter City"
+        android:textAlignment="center"
+        android:textColor="#F0F3F6"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:background="#486486"
+        android:padding="13dp"
+        android:textStyle="normal|bold"
+        android:text="Enter City"
+         />
 
     <EditText
         android:id="@+id/et_city"
@@ -58,9 +73,12 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/et_addressLine2"
         android:layout_below="@+id/tv_city"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="City"
+        android:textColor="#486486"
+        android:textColorHint="#486486"
+        android:textColorLink="#F0F3F6"
         android:inputType="textPostalAddress"
         android:textAlignment="center" />
 
@@ -79,8 +97,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Enter State"
+            android:textAlignment="center"
+            android:textColor="#F0F3F6"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:background="#486486"
+            android:padding="13dp"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/tv_zip"
@@ -88,8 +110,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Enter Zip Code"
+            android:textAlignment="center"
+            android:textColor="#F0F3F6"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:background="#486486"
+            android:padding="13dp"
+            android:textStyle="normal|bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -105,6 +131,7 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:popupBackground="#CDD6E1"
             android:layout_weight="1" />
 
         <EditText
@@ -114,6 +141,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Zip Code"
+            android:textColor="#486486"
+            android:textColorHint="#486486"
+            android:textColorLink="#F0F3F6"
             android:inputType="textPostalAddress"
             android:textAlignment="center" />
     </LinearLayout>
@@ -130,13 +160,23 @@
             android:id="@+id/b_goBackCreateOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_weight="1"
+            android:textColor="#486486"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="#CDD6E1"
             android:text="Back to Checkout" />
 
         <Button
             android:id="@+id/b_submitOrderFinal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#CDD6E1"
+            android:textColor="#486486"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:layout_weight="1"
             android:text="Submit Order" />
     </LinearLayout>
