@@ -26,6 +26,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_settings);
+        currentUser = (User)getIntent().getSerializableExtra("user");
 
         final EditText et_password = (EditText) findViewById(R.id.editText2);
         final EditText new_password = (EditText) findViewById(R.id.editText3);
