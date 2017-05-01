@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,7 +48,7 @@ public class OrderStatusActivity extends AppCompatActivity {
         getOrderStatus();
 
         ListView orderStatusList = (ListView) findViewById(R.id.lv_orderStatusList);
-        final Button goBack = (Button) findViewById(R.id.b_goBackOrderStatus);
+        final ImageButton goBack = (ImageButton) findViewById(R.id.b_goBackOrderStatus);
         adapter = new OrderAdapter(getApplicationContext(), orders);
         orderStatusList.setAdapter(adapter);
 
@@ -124,7 +125,7 @@ public class OrderStatusActivity extends AppCompatActivity {
                 serverError.setNegativeButton("Back to Main Page", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent userActivity = new Intent(getApplicationContext(), GetterActivity.class);
+                        Intent userActivity = new Intent(getApplicationContext(), UserActivity.class);
                         userActivity.putExtra("user", currentUser);
                         userActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         getApplicationContext().startActivity(userActivity);

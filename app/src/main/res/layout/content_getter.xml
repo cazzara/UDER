@@ -22,11 +22,17 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="31dp">
 
-        <Button
+        <!--<Button-->
+            <!--android:id="@+id/b_completeOrder"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Mark Order as Complete!" />-->
+
+        <ImageButton
             android:id="@+id/b_completeOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mark Order as Complete!" />
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/markordersascompleted"/>
     </FrameLayout>
 
 </RelativeLayout>

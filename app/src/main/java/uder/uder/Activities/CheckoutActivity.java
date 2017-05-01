@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,8 +31,8 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        final Button submit = (Button) findViewById(R.id.b_submitOrder);
-        final Button goBack = (Button) findViewById(R.id.b_goBack);
+        final ImageButton submit = (ImageButton) findViewById(R.id.b_submitOrder);
+        final ImageButton goBack = (ImageButton) findViewById(R.id.b_goBack);
         final TextView displayTotal = (TextView) findViewById(R.id.tv_total);
         currentUser = (Regular_User) getIntent().getSerializableExtra("user");
         userCartContents = currentUser.getShoppingCart().toArrayList();

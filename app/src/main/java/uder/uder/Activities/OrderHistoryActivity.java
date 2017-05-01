@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -37,7 +38,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_history);
         final TextView orderTextView = (TextView) findViewById(R.id.tvOrder1);
         orderHistoryMessage = (TextView) findViewById(R.id.tvOrderHistoryMessage);
-        final Button goBack = (Button) findViewById(R.id.b_goBackOrderHistory);
+        final ImageButton goBack = (ImageButton) findViewById(R.id.b_goBackOrderHistory);
         currentUser = (Regular_User) getIntent().getSerializableExtra("user");
         orderHistoryMessage.setText("Order History Details for " + currentUser.getfName() + " " + currentUser.getlName());
 

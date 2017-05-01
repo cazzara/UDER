@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import uder.uder.HelperClasses.Filter;
@@ -33,8 +34,8 @@ public class FilterActivity extends AppCompatActivity {
         final Spinner milk_price_spinner = (Spinner)findViewById(R.id.sp_priceRange);
         final Spinner milk_flavor_spinner = (Spinner)findViewById(R.id.sp_flavor);
         final Spinner milk_brand_spinner = (Spinner)findViewById(R.id.sp_brand);
-        final Button b_cancel = (Button)findViewById(R.id.b_cancel);
-        final Button b_apply = (Button)findViewById(R.id.b_apply);
+        final ImageButton b_cancel = (ImageButton)findViewById(R.id.b_cancel);
+        final ImageButton b_apply = (ImageButton)findViewById(R.id.b_apply);
 
         currentUser = (Regular_User)getIntent().getSerializableExtra("user");
 

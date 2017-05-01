@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         final RadioButton rb_user = (RadioButton) findViewById(R.id.rb_user);
         final RadioButton rb_getter = (RadioButton) findViewById(R.id.rb_getter);
 
-        final Button b_signup = (Button) findViewById(R.id.b_signup);
+        final ImageButton b_signup = (ImageButton) findViewById(R.id.b_signup);
 
         b_signup.setOnClickListener(new View.OnClickListener() {
 

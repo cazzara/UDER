@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.android.volley.RequestQueue;
@@ -38,8 +39,8 @@ public class ProductListActivity extends AppCompatActivity {
         getProducts(currentUser.getFilter());
 
 
-        final Button checkout = (Button) findViewById(R.id.b_checkout);
-        final Button goBack = (Button) findViewById(R.id.b_goBack);
+        final ImageButton checkout = (ImageButton) findViewById(R.id.b_checkout);
+        final ImageButton goBack = (ImageButton) findViewById(R.id.b_goBack);
 
         ListView productList = (ListView) findViewById(R.id.lv_productList);
         adapter = new ProductAdapter(getApplicationContext(),products);

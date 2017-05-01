@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class OrderListActivity extends AppCompatActivity {
 
         getOrders();
 
-        final Button cancel = (Button) findViewById(R.id.b_cancelOrderSelection);
+        final ImageButton cancel = (ImageButton) findViewById(R.id.b_cancelOrderSelection);
 
         currentUser = (Milker_User) getIntent().getSerializableExtra("user");
 

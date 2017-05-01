@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.android.volley.RequestQueue;
@@ -41,8 +42,8 @@ public class CreateOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_order);
         currentUser = (Regular_User) getIntent().getSerializableExtra("user");
 
-        final Button backToCheckout = (Button) findViewById(R.id.b_goBackCreateOrder);
-        final Button submitOrder = (Button) findViewById(R.id.b_submitOrderFinal);
+        final ImageButton backToCheckout = (ImageButton) findViewById(R.id.b_goBackCreateOrder);
+        final ImageButton submitOrder = (ImageButton) findViewById(R.id.b_submitOrderFinal);
 
         final EditText addressLine1 = (EditText) findViewById(R.id.et_addressLine1);
         final EditText addressLine2 = (EditText) findViewById(R.id.et_addressLine2);

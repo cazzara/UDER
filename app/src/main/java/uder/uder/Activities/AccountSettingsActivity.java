@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import org.json.JSONException;
@@ -32,7 +34,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         final EditText new_password = (EditText) findViewById(R.id.editText3);
         final EditText check_password = (EditText) findViewById(R.id.editText4);
 
-        final Button updatePassword = (Button) findViewById(R.id.button2);
+        final ImageButton updatePassword = (ImageButton) findViewById(R.id.button2);
 
         updatePassword.setOnClickListener(new View.OnClickListener() {
             final JSONObject serverResponse = new JSONObject();

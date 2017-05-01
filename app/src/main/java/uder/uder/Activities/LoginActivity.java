@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText et_password = (EditText) findViewById(R.id.et_password);
         final TextView tv_register = (TextView) findViewById(R.id.tv_register);
         final TextView tv_welcome  = (TextView) findViewById(R.id.tv_welcome);
-        final Button b_login = (Button) findViewById(R.id.b_login);
+        final ImageButton b_login = (ImageButton) findViewById(R.id.b_login);
         final ImageButton user_button = (ImageButton) findViewById(R.id.user_button);
         final ImageButton driver_button = (ImageButton) findViewById(R.id.driver_button);
 

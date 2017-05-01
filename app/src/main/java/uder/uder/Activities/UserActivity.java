@@ -2,8 +2,7 @@ package uder.uder.Activities;
 
 import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
 
 import android.support.design.widget.NavigationView;
@@ -17,10 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import uder.uder.HelperClasses.Regular_User;
-import uder.uder.HelperClasses.User;
+
 import uder.uder.R;
 
 public class UserActivity extends AppCompatActivity
@@ -45,8 +45,8 @@ public class UserActivity extends AppCompatActivity
         final TextView cartContents = (TextView)findViewById(R.id.tv_cartContents);
         final TextView filterContents = (TextView)findViewById(R.id.tv_filterContents);
 
-        Button clearCart = (Button)findViewById(R.id.b_clearCart);
-        Button clearFilter = (Button)findViewById(R.id.b_clearFilter);
+        ImageButton clearCart = (ImageButton)findViewById(R.id.b_clearCart);
+        ImageButton clearFilter = (ImageButton)findViewById(R.id.b_clearFilter);
 
         clearCart.setOnClickListener(new View.OnClickListener() {
             @Override

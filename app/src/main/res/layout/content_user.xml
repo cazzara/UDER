@@ -64,30 +64,49 @@
         android:layout_marginTop="111dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/b_clearCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="#CDD6E1"
-            android:elevation="2dp"
-            android:text="Clear Cart"
-            android:textColor="#486486"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+        <!--<Button-->
+            <!--android:id="@+id/b_clearCart"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="#CDD6E1"-->
+            <!--android:elevation="2dp"-->
+            <!--android:text="Clear Cart"-->
+            <!--android:textColor="#486486"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textStyle="bold" />-->
 
-        <Button
-            android:id="@+id/b_clearFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <!--<Button-->
+            <!--android:id="@+id/b_clearFilter"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="#CDD6E1"-->
+            <!--android:text="Reset Filters"-->
+            <!--android:textColor="#486486"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textStyle="bold" />-->
+        <ImageButton
+            android:id="@+id/b_clearCart"
+            android:layout_width="20dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="#CDD6E1"
-            android:text="Reset Filters"
-            android:textColor="#486486"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:background="@drawable/clearcart"
+            android:elevation="2dp"
+             />
+
+        <ImageButton
+            android:id="@+id/b_clearFilter"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/resetfilters"
+            android:elevation="2dp"
+             />
     </LinearLayout>
 
 </RelativeLayout>
