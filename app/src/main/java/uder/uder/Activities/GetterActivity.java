@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -38,7 +39,7 @@ public class GetterActivity extends AppCompatActivity
         setContentView(R.layout.activity_getter);
         currentUser = (Milker_User) getIntent().getSerializableExtra("user");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        final Button orderComplete = (Button) findViewById(R.id.b_completeOrder);
+        final ImageButton orderComplete = (ImageButton) findViewById(R.id.b_completeOrder);
         if(currentUser.getCurrentOrder() == null) { orderComplete.setVisibility(View.INVISIBLE); }
         orderComplete.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,8 +11,8 @@ public class Regular_User extends User implements Serializable{
     protected ShoppingCart shoppingCart;
     protected Filter filter;
 
-    public Regular_User(String id, String fName, String lName, String uName, String pass, ShoppingCart sCart, Filter Filter) {
-        super(id, fName, lName, uName, pass);
+    public Regular_User(String id, String fName, String lName, String uName, String pass, String type, ShoppingCart sCart, Filter Filter) {
+        super(id, fName, lName, uName, pass, type);
         shoppingCart = sCart;
         filter = Filter;
     }

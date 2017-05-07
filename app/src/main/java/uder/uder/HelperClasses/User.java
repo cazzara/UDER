@@ -8,18 +8,21 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    protected String userID;
-    protected String firstName;
-    protected String lastName;
-    protected String username;
-    protected String password;
+    private String userID;
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String password;
+    private String user_type;
 
-    public User(String id, String fName, String lName, String uName, String pass){
+
+    public User(String id, String fName, String lName, String uName, String pass, String type){
         userID = id;
         firstName = fName;
         lastName = lName;
         username = uName;
         password = pass;
+        user_type = type;
     }
 
     public String getUserID() {
@@ -32,6 +35,14 @@ public class User implements Serializable {
 
     public String getlName(){
         return lastName;
+    }
+
+    public String getUserType() {
+        return user_type;
+    }
+
+    public void setUserType(String user_type) {
+        this.user_type = user_type;
     }
 
     public String getUsername(){

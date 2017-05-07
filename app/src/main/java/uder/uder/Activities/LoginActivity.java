@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import uder.uder.HelperClasses.Filter;
 import uder.uder.HelperClasses.Milker_User;
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
         user_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Regular_User me = new Regular_User("5", "Chris", "Azzara", "cazzara", "password", new ShoppingCart(), new Filter());
+                Regular_User me = new Regular_User("5", "Chris", "Azzara", "cazzara", "password", "buyer", new ShoppingCart(), new Filter());
 
                 Intent user_areaIntent = new Intent(v.getContext(), UserActivity.class);
                 user_areaIntent.putExtra("user", me);
@@ -63,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
         driver_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Milker_User me = new Milker_User("5", "Chris", "Azzara", "cazzara", "password", null);
+                Milker_User me = new Milker_User("5", "Chris", "Azzara", "cazzara", "password", "milker", null);
                 Intent getter_areaIntent = new Intent(v.getContext(), GetterActivity.class);
 
                 getter_areaIntent.putExtra("user", me);
@@ -92,18 +93,53 @@ public class LoginActivity extends AppCompatActivity {
                             if(status.equals("OK")){
                                 if(user_type.equals("buyer")) {
 
-                                    Regular_User user = new Regular_User(user_id, first_name, last_name, username, password, new ShoppingCart(), new Filter());
+                                    Regular_User user = new Regular_User(user_id, first_name, last_name, username, password, "buyer", new ShoppingCart(), new Filter());
                                     Intent intent = new Intent(LoginActivity.this, UserActivity.class);
-
                                     intent.putExtra("user", user);
                                     LoginActivity.this.startActivity(intent);
                                 }
                                 else{
-                                    Milker_User user = new Milker_User(user_id, first_name, last_name, username, password, null);
-                                    // // TODO: 4/27/2017 Return milker active order 
-                                    Intent intent = new Intent(LoginActivity.this, GetterActivity.class);
-                                    intent.putExtra("user", user);
-                                    LoginActivity.this.startActivity(intent);
+                                    Milker_User user = new Milker_User(user_id, first_name, last_name, username, password, "milker", null);
+                                    // TODO JSON exception thrown
+                                    JSONObject order = response.getJSONObject("order");
+                                    if(order.equals("no active order")){
+                                        Intent intent = new Intent(LoginActivity.this, GetterActivity.class);
+                                        intent.putExtra("user", user);
+                                        LoginActivity.this.startActivity(intent);
+                                    }
+                                    else {
+                                        JSONArray products = order.getJSONArray("products");
+                                        ShoppingCart productQuantities = new ShoppingCart();
+
+                                        String street = order.getString("street");
+                                        String city = order.getString("city");
+                                        String state = order.getString("state");
+                                        String zip = order.getString("zip");
+                                        String created = order.getString("date");
+                                        String order_status = order.getString("status");
+                                        String order_id = order.getString("order_id");
+                                        String milker_id = order.getString("milker_id");
+                                        String buyer_id = order.getString("buyer_id");
+                                        HashMap<String, String> address = new HashMap<>();
+                                        address.put("street", street);
+                                        address.put("city", city);
+                                        address.put("state", state);
+                                        address.put("zip", zip);
+                                        for (int j = 0; j < products.length(); j++) {
+                                            JSONObject aProduct = products.getJSONObject(j);
+                                            String product_id = aProduct.getString("product_id");
+                                            String name = aProduct.getString("name");
+                                            String price = aProduct.getString("price");
+                                            Product p = new Product(product_id, name, price);
+                                            String quantity = aProduct.getString("quantity");
+                                            productQuantities.put(p, quantity);
+                                        }
+                                        Order o = new Order(order_id, address, buyer_id, order_status, milker_id, created, productQuantities);
+                                        user.setCurrentOrder(o);
+                                        Intent intent = new Intent(LoginActivity.this, GetterActivity.class);
+                                        intent.putExtra("user", user);
+                                        LoginActivity.this.startActivity(intent);
+                                    }
                                 }
                             }
                             else{

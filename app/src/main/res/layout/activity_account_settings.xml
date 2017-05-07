@@ -79,15 +79,29 @@
         android:layout_below="@+id/editText4"
         android:layout_alignStart="@+id/editText4"
         android:layout_marginStart="8dp" />-->
-    <ImageButton
-        android:id="@+id/button2"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="67dp"
-        android:background="@drawable/updatepassword"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_marginStart="8dp" />
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/b_goBackAcctSettings"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="67dp"
+            android:layout_weight="1"
+            android:background="@drawable/goback" />
+        <ImageButton
+            android:id="@+id/button2"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="67dp"
+            android:layout_weight="1"
+            android:background="@drawable/updatepassword" />
+    </LinearLayout>
 
 
 </RelativeLayout>
