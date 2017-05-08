@@ -50,6 +50,7 @@ public class GetterActivity extends AppCompatActivity
                             try {
                                 if (response.getString("status").equals("OK")) {
                                     currentUser.setCurrentOrder(null);
+                                    orderComplete.setVisibility(View.INVISIBLE);
                                     AlertDialog.Builder jobMapAlert = new AlertDialog.Builder(GetterActivity.this);
                                     jobMapAlert.setMessage("Job Complete!")
                                             .setNegativeButton("Exit", null)

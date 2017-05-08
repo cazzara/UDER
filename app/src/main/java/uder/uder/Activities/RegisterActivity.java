@@ -51,14 +51,14 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 /* When creating the variables, the toString() call is necessary because
                 getText() returns a CharSequence */
-                final String username = et_username.getText().toString();
-                final String password = et_password.getText().toString();
-                final String first_name = et_fname.getText().toString();
-                final String last_name = et_fname.getText().toString();
+                String username = et_username.getText().toString();
+                String password = et_password.getText().toString();
+                String first_name = et_fname.getText().toString();
+                String last_name = et_lname.getText().toString();
 
                 // Awesome use of ternary conditional operator '?'
                 // condition ? value_if_true : value_if_false
-                final String user_type = rb_user.isSelected() ? "buyer" : "milker";
+                String user_type = rg_group.getCheckedRadioButtonId() == R.id.rb_user ? "buyer" : "milker";
 
 
                 Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>(){
@@ -90,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                System.out.println("Sent to server: " + params.toString());
                 RequestClass POSTRegister = new RequestClass("http://34.208.156.179:4567/api/v1/auth/register", params, listener, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {

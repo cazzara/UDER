@@ -13,7 +13,6 @@ import org.json.JSONObject;
 
 public class RequestClass extends JsonObjectRequest {
 
-
     public RequestClass(String URL, JSONObject post_data, Response.Listener<JSONObject> listener, Response.ErrorListener error){
         super(URL, post_data, listener, error);
     }

@@ -1,22 +1,13 @@
 package uder.uder.Activities;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
-
 import uder.uder.GiftView;
 import uder.uder.R;
 import android.content.Intent;
 import android.os.Handler;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.animation.*;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 
 public class SplashScreen extends AppCompatActivity {
@@ -24,7 +15,7 @@ public class SplashScreen extends AppCompatActivity {
     private GiftView giftView;
     private ProgressBar progressBar;
 
-    private final int SPLASH_DISPLAY_TIMER = 100;
+    private final int SPLASH_DISPLAY_TIMER = 4000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

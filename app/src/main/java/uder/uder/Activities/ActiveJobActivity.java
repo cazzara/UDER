@@ -36,6 +36,7 @@ public class ActiveJobActivity extends FragmentActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_job);
         currentUser = (Milker_User) getIntent().getSerializableExtra("user");
+        System.out.println(currentUser.getCurrentOrder());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -82,7 +83,7 @@ public class ActiveJobActivity extends FragmentActivity implements OnMapReadyCal
 
     public Address getJobAddress() throws IOException{
         Geocoder gc = new Geocoder(this);
-
+        System.out.println(currentUser.getCurrentOrder().getAddress());
         List<Address> list = gc.getFromLocationName(currentUser.getCurrentOrder().getAddress(), 1);
         Address address = list.get(0);
         return address;

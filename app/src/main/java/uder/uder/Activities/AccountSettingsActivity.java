@@ -46,11 +46,13 @@ public class AccountSettingsActivity extends AppCompatActivity {
                 if(currentUser.getUserType().equals("milker")){
                     Intent milkerIntent = new Intent(getApplicationContext(), GetterActivity.class);
                     milkerIntent.putExtra("user", currentUser);
+                    milkerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     getApplicationContext().startActivity(milkerIntent);
                 }
                 else{
                     Intent buyerIntent = new Intent(getApplicationContext(), UserActivity.class);
                     buyerIntent.putExtra("user", currentUser);
+                    buyerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     getApplicationContext().startActivity(buyerIntent);
                 }
             }

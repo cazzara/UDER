@@ -84,13 +84,16 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         System.out.println(response.toString());
                         try{
+
                             String status = response.getString("status");
-                            String user_type = response.getString("user_type");
-                            String user_id = response.getString("user_id");
-                            String first_name = response.getString("first_name");
-                            String last_name = response.getString("last_name");
 
                             if(status.equals("OK")){
+
+                                String user_type = response.getString("user_type");
+                                String user_id = response.getString("user_id");
+                                String first_name = response.getString("first_name");
+                                String last_name = response.getString("last_name");
+
                                 if(user_type.equals("buyer")) {
 
                                     Regular_User user = new Regular_User(user_id, first_name, last_name, username, password, "buyer", new ShoppingCart(), new Filter());
@@ -100,14 +103,15 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 else{
                                     Milker_User user = new Milker_User(user_id, first_name, last_name, username, password, "milker", null);
-                                    // TODO JSON exception thrown
-                                    JSONObject order = response.getJSONObject("order");
-                                    if(order.equals("no active order")){
+                                    boolean has_order = response.getBoolean("has_order");
+
+                                    if(!has_order){
                                         Intent intent = new Intent(LoginActivity.this, GetterActivity.class);
                                         intent.putExtra("user", user);
                                         LoginActivity.this.startActivity(intent);
                                     }
                                     else {
+                                        JSONObject order = response.getJSONObject("order");
                                         JSONArray products = order.getJSONArray("products");
                                         ShoppingCart productQuantities = new ShoppingCart();
 
@@ -153,6 +157,11 @@ public class LoginActivity extends AppCompatActivity {
 
                     }catch (JSONException e){
                             e.printStackTrace();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                            builder.setMessage("Login Failed")
+                                    .setNegativeButton("Retry", null)
+                                    .create()
+                                    .show();
                         }
                 }
                 };
