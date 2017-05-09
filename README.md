@@ -15,3 +15,24 @@ The app communicates via JSON requests with an API running on an Amazon EC2 inst
 To run a demo of the app, simply clone or download the zip file of this Github project and import it into a new Android Studio project
 
 From there you can run an Android emulator and use the app to register a user and login.
+
+# Building the Server API
+
+The server runs on an Amazon Linux image and uses a MySQL database to store order, product, and user information.
+
+The Java server uses the Spark framework to act as a RESTful web service for the app to make database queries.
+The following is added to the maven POM.xml file to incorporate Spark into the server:
+<dependency>
+    <groupId>com.sparkjava</groupId>
+    <artifactId>spark-core</artifactId>
+    <version>2.6.0</version>
+</dependency>
+
+Spark uses port 4567 so we have to create a firewall rule to allow incoming connections on that port.
+
+To connect Java with the MySQL database we used the MySQL driver "mysql-connector-java-5.1.41-bin.jar"
+And added it to our project's classpath.
+
+Then we export the project to a .jar file and FTP it to our server and run it using the command
+
+java -jar our-jar-file.jar
