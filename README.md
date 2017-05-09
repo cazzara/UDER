@@ -22,12 +22,12 @@ The server runs on an Amazon Linux image and uses a MySQL database to store orde
 
 The Java server uses the Spark framework to act as a RESTful web service for the app to make database queries.
 The following is added to the maven POM.xml file to incorporate Spark into the server:
-<dependency>
+```<dependency>
     <groupId>com.sparkjava</groupId>
     <artifactId>spark-core</artifactId>
     <version>2.6.0</version>
 </dependency>
-
+```
 Spark uses port 4567 so we have to create a firewall rule to allow incoming connections on that port.
 
 To connect Java with the MySQL database we used the MySQL driver "mysql-connector-java-5.1.41-bin.jar"
