@@ -81,8 +81,6 @@ public class GetterActivity extends AppCompatActivity
 
                     RequestQueue queue = Volley.newRequestQueue(GetterActivity.this);
                     queue.add(orderComplete);
-
-
             }
         });
 
@@ -157,9 +155,17 @@ public class GetterActivity extends AppCompatActivity
             this.startActivity(acctMgmtIntent);
         }
         else if (id == R.id.action_order_details){
-            Intent jobDetails = new Intent(this, ActiveJobDetails.class);
-            jobDetails.putExtra("user", currentUser);
-            this.startActivity(jobDetails);
+            if(currentUser.getCurrentOrder() == null){
+                AlertDialog.Builder jobMapAlert = new AlertDialog.Builder(GetterActivity.this);
+                jobMapAlert.setMessage("No Active Job!")
+                        .setNegativeButton("Exit", null)
+                        .create()
+                        .show();
+            }else {
+                Intent jobDetails = new Intent(this, ActiveJobDetails.class);
+                jobDetails.putExtra("user", currentUser);
+                this.startActivity(jobDetails);
+            }
 
         }
         else if (id == R.id.action_logout){

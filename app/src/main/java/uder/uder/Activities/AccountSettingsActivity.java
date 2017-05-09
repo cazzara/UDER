@@ -71,8 +71,8 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
 
                 try {
-                    if (new_password.equals(check_pass) && password.equals(currentUser.getPassword())) {
-                        params.put("password", new_password);
+                    if (newPassword.equals(check_pass) && password.equals(currentUser.getPassword())) {
+                        params.put("password", newPassword);
                     }
                     else if(!password.equals(currentUser.getPassword())){
                         AlertDialog.Builder passError = new AlertDialog.Builder(AccountSettingsActivity.this);
@@ -114,7 +114,18 @@ public class AccountSettingsActivity extends AppCompatActivity {
                                 passOK.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-
+                                        if(currentUser.getUserType().equals("milker")){
+                                            Intent milkerIntent = new Intent(getApplicationContext(), GetterActivity.class);
+                                            milkerIntent.putExtra("user", currentUser);
+                                            milkerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            getApplicationContext().startActivity(milkerIntent);
+                                        }
+                                        else{
+                                            Intent buyerIntent = new Intent(getApplicationContext(), UserActivity.class);
+                                            buyerIntent.putExtra("user", currentUser);
+                                            buyerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            getApplicationContext().startActivity(buyerIntent);
+                                        }
                                     }
                                 }).create().show();
                             }

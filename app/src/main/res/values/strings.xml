@@ -56,5 +56,7 @@
     </string-array>
     <string name="title_activity_create_order">CreateOrderActivity</string>
     <string name="streetMessage">Enter House Number and Street</string>
+    <string name="registerMessage">Click the button below to register a new user!</string>
+    <string name="welcomeMessage">Welcome to UDER, please enter your username and password below to get started!</string>
 
 </resources>

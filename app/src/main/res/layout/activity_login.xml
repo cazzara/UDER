@@ -64,17 +64,38 @@
         android:layout_below="@+id/et_password" />
 
     <TextView
-        android:id="@+id/tv_register"
+        android:id="@+id/tv_registerMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/b_login"
+        android:layout_marginTop="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="Click Here to register a new user"
-        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="normal|bold"
         android:textColor="#486486"
-        android:textSize="24sp"
-        android:textStyle="normal|bold" />
+        android:text="@string/registerMessage" />
+
+    <ImageButton
+        android:id="@+id/b_register"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="91dp"
+        android:background="@drawable/register"
+        android:layout_below="@+id/b_login"
+        android:layout_centerHorizontal="true" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv_register"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/b_login"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="40dp"-->
+        <!--android:text="Click Here to register a new user"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textColor="#486486"-->
+        <!--android:textSize="24sp"-->
+        <!--android:textStyle="normal|bold" />-->
 
     <TextView
         android:id="@+id/tv_welcome"
@@ -83,7 +104,7 @@
         android:layout_alignParentEnd="true"
         android:background="#486486"
         android:padding="13dp"
-        android:text="Welcome to UDER, please enter your username and password below to get started!"
+        android:text="@string/welcomeMessage"
         android:textAlignment="center"
         android:textColor="#F0F3F6"
         android:textSize="18sp"
@@ -93,7 +114,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/tv_register"
+        android:layout_below="@+id/b_register"
         android:layout_marginTop="50dp"
         android:orientation="horizontal">
 
@@ -101,7 +122,6 @@
             android:id="@+id/driver_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_alignEnd="@+id/tv_register"
             android:layout_weight="1"
             android:background="#00ffffff"
             android:elevation="7dp"
@@ -111,12 +131,12 @@
             android:id="@+id/user_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_alignParentBottom="false"
-            android:layout_alignStart="@+id/tv_register"
             android:layout_weight="0.95"
             android:background="#00ffffff"
             android:elevation="7dp"
             android:src="@mipmap/uder_launcher" />
     </LinearLayout>
+
+
 
 </RelativeLayout>

@@ -43,13 +43,15 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText et_username = (EditText) findViewById(R.id.et_username);
         final EditText et_password = (EditText) findViewById(R.id.et_password);
-        final TextView tv_register = (TextView) findViewById(R.id.tv_register);
-        final TextView tv_welcome  = (TextView) findViewById(R.id.tv_welcome);
         final ImageButton b_login = (ImageButton) findViewById(R.id.b_login);
+        final ImageButton b_register = (ImageButton) findViewById(R.id.b_register);
         final ImageButton user_button = (ImageButton) findViewById(R.id.user_button);
         final ImageButton driver_button = (ImageButton) findViewById(R.id.driver_button);
 
 
+
+        user_button.setVisibility(View.INVISIBLE);
+        driver_button.setVisibility(View.INVISIBLE);
 
         user_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -197,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        tv_register.setOnClickListener(new View.OnClickListener(){
+        b_register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent registerIntent = new Intent(v.getContext(), RegisterActivity.class);
